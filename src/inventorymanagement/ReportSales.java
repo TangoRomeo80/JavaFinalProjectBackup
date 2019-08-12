@@ -5,9 +5,9 @@
  */
 package inventorymanagement;
 
-import BusinessLayer.SalesBl;
-import DatabaseLayer.GlobalConnection;
-import ObjectFactory.SalesOF;
+import Executor.SalesEx;
+import Databse.GlobalConnection;
+import Object.SalesObj;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author chabbi
+ * @author Rahat
  */
 public class ReportSales extends javax.swing.JInternalFrame {
     GlobalConnection db = new GlobalConnection();
@@ -27,8 +27,8 @@ public class ReportSales extends javax.swing.JInternalFrame {
     public ReportSales() {
         initComponents();
         
-        sale = new SalesOF();
-        blsale = new SalesBl();
+        sale = new SalesObj();
+        blsale = new SalesEx();
         DefaultTableModel dtm = new DefaultTableModel();
         try{
             dtm.addColumn("Id");
@@ -40,9 +40,9 @@ public class ReportSales extends javax.swing.JInternalFrame {
             dtm.addColumn("Quantity");
             dtm.addColumn("Item Name");
                                     
-            ArrayList<SalesOF> sales = blsale.getSalesList();
+            ArrayList<SalesObj> sales = blsale.getSalesList();
             for(int i=0; i<sales.size(); ++i ){
-              Object[] data = { sales.get(i).getSales_id(), sales.get(i).getSales_customer_name(), sales.get(i).getSales_customer_address(), sales.get(i).getSales_date(), sales.get(i).getSales_bill_no(), sales.get(i).getSales_rate(), sales.get(i).getSales_quantity(), sales.get(i).getItem_name() };
+              Object[] data = { sales.get(i).getsalesId(), sales.get(i).getsalesCustomerName(), sales.get(i).getsalesCustomerAddress(), sales.get(i).getsalesDate(), sales.get(i).getsalesBillNo(), sales.get(i).getsalesRate(), sales.get(i).getsalesQuantity(), sales.get(i).getitemName() };
               dtm.addRow(data);
             }
             tblViewSales.setModel(dtm);
@@ -181,6 +181,6 @@ public class ReportSales extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblViewSales;
     // End of variables declaration//GEN-END:variables
-    private SalesOF sale;
-    private SalesBl blsale;
+    private SalesObj sale;
+    private SalesEx blsale;
 }

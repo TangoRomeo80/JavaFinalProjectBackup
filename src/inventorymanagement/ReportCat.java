@@ -5,8 +5,8 @@
  */
 package inventorymanagement;
 
-import BusinessLayer.CategoryBl;
-import ObjectFactory.CategoryOF;
+import Executor.CategoryEx;
+import Object.CategoryObj;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author chabbi
+ * @author Rahat
  */
 public class ReportCat extends javax.swing.JFrame {
 
@@ -25,7 +25,7 @@ public class ReportCat extends javax.swing.JFrame {
     public ReportCat() {
         initComponents();
         
-        blcategory = new CategoryBl();
+        blcategory = new CategoryEx();
         DefaultTableModel dtm = new DefaultTableModel();
         try{
 
@@ -33,9 +33,9 @@ public class ReportCat extends javax.swing.JFrame {
             dtm.addColumn("Category Name");
             dtm.addColumn("Category Detail");
                         
-            ArrayList<CategoryOF> categorys = blcategory.getcategoryList();
+            ArrayList<CategoryObj> categorys = blcategory.getcategoryList();
             for(int i=0; i<categorys.size(); ++i ){
-              Object[] data = { categorys.get(i).getCat_id(), categorys.get(i).getCat_name(), categorys.get(i).getCat_detail() };
+              Object[] data = { categorys.get(i).getCatId(), categorys.get(i).getCatName(), categorys.get(i).getCatDetail() };
               dtm.addRow(data);
             }
             tblViewCategory.setModel(dtm);
@@ -171,6 +171,6 @@ public class ReportCat extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblViewCategory;
     // End of variables declaration//GEN-END:variables
-    private CategoryOF category;
-    private CategoryBl blcategory;
+    private CategoryObj category;
+    private CategoryEx blcategory;
 }

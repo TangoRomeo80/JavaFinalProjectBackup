@@ -10,24 +10,24 @@
  */
 package inventorymanagement;
 
-import BusinessLayer.UserBl;
-import DatabaseLayer.UserDl;
-import ObjectFactory.UserOF;
+import Executor.UserEx;
+import Databse.UserDB;
+import Object.UserObj;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author chhabi
+ * @author Rahat
  */
 public class ChangePasswordForm extends javax.swing.JInternalFrame {
 
     /** Creates new form ChangePasswordForm */
-    public ChangePasswordForm(UserOF user) {
+    public ChangePasswordForm(UserObj user) {
         initComponents();
          this.userO = user;
-         Integer id = user.getUser_id();
+         Integer id = user.getuserId();
          txtUserId.setText(id.toString());
-         txtUserName.setText(user.getUser_name());
+         txtUserName.setText(user.getuserName());
         setVisible(true);
     }
 
@@ -133,8 +133,8 @@ public class ChangePasswordForm extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
       
     try{
-      userO = new UserOF();
-      //user.setUser_Id(0);
+      userO = new UserObj();
+      //user.setuserId(0);
       String password =txtUserPassword.getText().toString();
             String rePassword = txtRePassword.getText().toString();
      
@@ -162,11 +162,11 @@ public class ChangePasswordForm extends javax.swing.JInternalFrame {
                                
         if(errorMsg.isEmpty()){
       
-            userO.setUser_id(Integer.parseInt(txtUserId.getText()));
-            userO.setUser_name(txtUserName.getText());
-            userO.setUser_password(new String(txtUserPassword.getPassword()));
+            userO.setuserId(Integer.parseInt(txtUserId.getText()));
+            userO.setuserName(txtUserName.getText());
+            userO.setuserPassword(new String(txtUserPassword.getPassword()));
           
-        userB = new UserBl(userO);
+        userB = new UserEx(userO);
         if(userB.ChangePassword()){
             JOptionPane.showMessageDialog(this, "Password Changed  Successfully", "Operation Successful", JOptionPane.INFORMATION_MESSAGE);
         this.dispose();
@@ -197,6 +197,6 @@ public class ChangePasswordForm extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtUserName;
     private javax.swing.JPasswordField txtUserPassword;
     // End of variables declaration//GEN-END:variables
-    private UserBl userB;
-    private UserOF userO;
+    private UserEx userB;
+    private UserObj userO;
 }

@@ -10,13 +10,13 @@
  */
 package inventorymanagement;
 
-import BusinessLayer.SupplierBl;
-import ObjectFactory.SupplierOF;
+import Executor.SupplierEx;
+import Object.SupplierObj;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author chhabi
+ * @author Rahat
  */
 public class SupplierRegister extends javax.swing.JInternalFrame {
 
@@ -167,13 +167,13 @@ private void btnSupplierRegisterActionPerformed(java.awt.event.ActionEvent evt) 
         }
       if(errorMsg.isEmpty()){  
         
-        supplier = new SupplierOF();
-        supplier.setSupplier_id(0);
-        supplier.setSupplier_name(txtSupplierName.getText());
-        supplier.setSupplier_phone(txtSupplierPhone.getText());
-        supplier.setSupplier_address(txtSupplierAddress.getText());
-        supplier.setSupplier_detail(txtSupplierDetail.getText());
-        blsupplier = new SupplierBl(supplier);
+        supplier = new SupplierObj();
+        supplier.setsupplierId(0);
+        supplier.setsupplierName(txtSupplierName.getText());
+        supplier.setsupplierPhone(txtSupplierPhone.getText());
+        supplier.setsupplierAddress(txtSupplierAddress.getText());
+        supplier.setsupplierDetail(txtSupplierDetail.getText());
+        blsupplier = new SupplierEx(supplier);
         if(blsupplier.insertsupplier()){
           JOptionPane.showMessageDialog(this, "Supplier Created Successfully", "Operation Successful", JOptionPane.INFORMATION_MESSAGE);
         }else{
@@ -209,8 +209,8 @@ private void btnSupplierResetActionPerformed(java.awt.event.ActionEvent evt) {//
     private javax.swing.JTextField txtSupplierName;
     private javax.swing.JTextField txtSupplierPhone;
     // End of variables declaration//GEN-END:variables
-    private SupplierBl blsupplier;
-    private SupplierOF supplier;
+    private SupplierEx blsupplier;
+    private SupplierObj supplier;
     
     // Imput validation for supplier phone
   public boolean isNumber(String n) {

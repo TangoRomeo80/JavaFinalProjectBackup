@@ -10,12 +10,12 @@
  */
 package inventorymanagement;
 
-import BusinessLayer.CategoryBl;
-import BusinessLayer.ItemBl;
-import BusinessLayer.SupplierBl;
-import ObjectFactory.CategoryOF;
-import ObjectFactory.ItemOF;
-import ObjectFactory.SupplierOF;
+import Executor.CategoryEx;
+import Executor.ItemEx;
+import Executor.SupplierEx;
+import Object.CategoryObj;
+import Object.ItemObj;
+import Object.SupplierObj;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author chhabi
+ * @author Rahat
  */
 public class ItemRegister extends javax.swing.JInternalFrame {
 
@@ -32,24 +32,24 @@ public class ItemRegister extends javax.swing.JInternalFrame {
         initComponents();
       
       // Get category name in comobox  
-      CategoryBl catBl = new CategoryBl();
+      CategoryEx catBl = new CategoryEx();
       try {          
-           ArrayList<CategoryOF> catName = catBl.getcategoryList();
+           ArrayList<CategoryObj> catName = catBl.getcategoryList();
            for(int i=0; i<catName.size(); ++i )           
            {     
-             cmbCategory.addItem(catName.get(i).getCat_name());             
+             cmbCategory.addItem(catName.get(i).getCatName());             
            }
       }catch(Exception e){
           JOptionPane.showMessageDialog(this, "No Category Name.\n" + e);
       }
       
       // Get supplier name in combo box
-      SupplierBl supBl = new SupplierBl();
+      SupplierEx supBl = new SupplierEx();
       try {          
-           ArrayList<SupplierOF> supplierName = supBl.getsupplierList();
+           ArrayList<SupplierObj> supplierName = supBl.getsupplierList();
            for(int i=0; i<supplierName.size(); ++i )           
            {     
-             cmbSupplier.addItem(supplierName.get(i).getSupplier_name());             
+             cmbSupplier.addItem(supplierName.get(i).getsupplierName());             
            }
       }catch(Exception e){
           JOptionPane.showMessageDialog(this, "No Supplier Name.\n" + e);
@@ -250,28 +250,28 @@ private void btnItemRegisterActionPerformed(java.awt.event.ActionEvent evt) {//G
         }
       if(errorMsg.isEmpty()){  
         
-        item = new ItemOF();
-        item.setItem_id(0);
-        item.setItem_name(txtItemName.getText());
+        item = new ItemObj();
+        item.setItemId(0);
+        item.setitemName(txtItemName.getText());
 
-        item.setItem_rate(Integer.parseInt(txtItemRate.getText()));
-        item.setItem_quantity(Integer.parseInt(txtItemQuantity.getText()));
+        item.setitemRate(Integer.parseInt(txtItemRate.getText()));
+        item.setitemQuantity(Integer.parseInt(txtItemQuantity.getText()));
 
         Date od = txtItemOrderDate.getDate();
         SimpleDateFormat order_date =new SimpleDateFormat("yyyy-MM-dd");
-        item.setItem_order_date(order_date.format(od).toString());
+        item.setitemOrderDate(order_date.format(od).toString());
 
         Date sd = txtItemSuppliedDate.getDate();
         SimpleDateFormat supplied_date = new SimpleDateFormat("yyyy-MM-dd");
-        item.setItem_supplied_date(supplied_date.format(sd).toString());
+        item.setitemSuppliedDate(supplied_date.format(sd).toString());
 
-       //user.setUser_type(cmbRegisterUserType.getSelectedItem().toString());
-        item.setCat_name(cmbCategory.getSelectedItem().toString());
-        item.setSupplier_name(cmbSupplier.getSelectedItem().toString());
+       //user.setuserType(cmbRegisterUserType.getSelectedItem().toString());
+        item.setCatName(cmbCategory.getSelectedItem().toString());
+        item.setsupplierName(cmbSupplier.getSelectedItem().toString());
 
-        item.setItem_detail(txtItemDetail.getText());
+        item.setitemDetail(txtItemDetail.getText());
 
-        blItem = new ItemBl(item);
+        blItem = new ItemEx(item);
         if(blItem.insertItem()){
           JOptionPane.showMessageDialog(this, "Item Created Successfully", "Operation Successful", JOptionPane.INFORMATION_MESSAGE);
         }else{
@@ -321,6 +321,6 @@ private void btnItemResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private javax.swing.JTextField txtItemRate;
     private com.toedter.calendar.JDateChooser txtItemSuppliedDate;
     // End of variables declaration//GEN-END:variables
-    private ItemBl blItem;
-    private ItemOF item;
+    private ItemEx blItem;
+    private ItemObj item;
 }

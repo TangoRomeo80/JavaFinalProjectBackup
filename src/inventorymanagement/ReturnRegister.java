@@ -10,10 +10,10 @@
  */
 package inventorymanagement;
 
-import BusinessLayer.ItemBl;
-import BusinessLayer.ReturnBl;
-import ObjectFactory.ItemOF;
-import ObjectFactory.ReturnOF;
+import Executor.ItemEx;
+import Executor.ReturnEx;
+import Object.ItemObj;
+import Object.ReturnObj;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author chhabi
+ * @author Rahat
  */
 public class ReturnRegister extends javax.swing.JInternalFrame {
 
@@ -30,12 +30,12 @@ public class ReturnRegister extends javax.swing.JInternalFrame {
         initComponents();
         
       // Get item name in comobox  
-      ItemBl rtBl = new ItemBl();
+      ItemEx rtBl = new ItemEx();
       try {          
-           ArrayList<ItemOF> itemName = rtBl.getItemList();
+           ArrayList<ItemObj> itemName = rtBl.getItemList();
            for(int i=0; i<itemName.size(); ++i )           
            {     
-             cmbItemName.addItem(itemName.get(i).getItem_name());             
+             cmbItemName.addItem(itemName.get(i).getitemName());             
            }
       }catch(Exception e){
           JOptionPane.showMessageDialog(this, "No Item Name.\n" + e);
@@ -182,18 +182,18 @@ private void btnReturnRegisterActionPerformed(java.awt.event.ActionEvent evt) {/
         }
       if(errorMsg.isEmpty()){ 
           
-        rturn = new ReturnOF();
-        rturn.setReturn_id(0);
-        rturn.setReturn_name( txtReturnName.getText() );
+        rturn = new ReturnObj();
+        rturn.setreturnId(0);
+        rturn.setreturnName( txtReturnName.getText() );
         
         Date rd = itemReturnDate.getDate();
         SimpleDateFormat r_date =new SimpleDateFormat("yyyy-MM-dd");
-        rturn.setReturn_date(r_date.format(rd).toString());
+        rturn.setreturnDate(r_date.format(rd).toString());
 
-        //rturn.setReturn_date(itemReturnDate.getDateFormatString());      
-        rturn.setReturn_quantity(Integer.parseInt(txtItemReturnQuantity.getText()));          
-        rturn.setItem_name(cmbItemName.getSelectedItem().toString());
-        blRturn = new ReturnBl(rturn);
+        //rturn.setreturnDate(itemReturnDate.getDateFormatString());      
+        rturn.setreturnQuantity(Integer.parseInt(txtItemReturnQuantity.getText()));          
+        rturn.setitemName(cmbItemName.getSelectedItem().toString());
+        blRturn = new ReturnEx(rturn);
         if(blRturn.insertRturn()){
           JOptionPane.showMessageDialog(this, "Return Item Created Successfully", "Operation Successful", JOptionPane.INFORMATION_MESSAGE);
         }else{
@@ -229,6 +229,6 @@ private void btnReturnResetActionPerformed(java.awt.event.ActionEvent evt) {//GE
     private javax.swing.JTextField txtItemReturnQuantity;
     private javax.swing.JTextField txtReturnName;
     // End of variables declaration//GEN-END:variables
-    private ReturnBl blRturn;
-    private ReturnOF rturn;
+    private ReturnEx blRturn;
+    private ReturnObj rturn;
 }

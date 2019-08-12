@@ -10,13 +10,13 @@
  */
 package inventorymanagement;
 
-import BusinessLayer.UserBl;
-import ObjectFactory.UserOF;
+import Executor.UserEx;
+import Object.UserObj;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author chhabi
+ * @author Rahat
  */
 public class UserRegister extends javax.swing.JInternalFrame {
 
@@ -177,13 +177,13 @@ private void btnRegisterUserActionPerformed(java.awt.event.ActionEvent evt) {//G
         }
       if(errorMsg.isEmpty()){  
           
-        user = new UserOF();
-        user.setUser_id(0);      
-        user.setUser_name(txtRegisterUserName.getText());      
-        user.setUser_password( new String(txtRegisterUserPassword.getPassword()));
-        user.setUser_email(txtRegisterUserEmail.getText());
-        user.setUser_type(cmbRegisterUserType.getSelectedItem().toString());
-        blUser = new UserBl(user);
+        user = new UserObj();
+        user.setuserId(0);      
+        user.setuserName(txtRegisterUserName.getText());      
+        user.setuserPassword( new String(txtRegisterUserPassword.getPassword()));
+        user.setuserEmail(txtRegisterUserEmail.getText());
+        user.setuserType(cmbRegisterUserType.getSelectedItem().toString());
+        blUser = new UserEx(user);
 
         if(blUser.insertUser()){
           JOptionPane.showMessageDialog(this, "User Created Successfully", "Operation Successful", JOptionPane.INFORMATION_MESSAGE);
@@ -223,6 +223,6 @@ private void btnResetUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private javax.swing.JTextField txtRegisterUserName;
     private javax.swing.JPasswordField txtRegisterUserPassword;
     // End of variables declaration//GEN-END:variables
-    private UserBl blUser;
-    private UserOF user;
+    private UserEx blUser;
+    private UserObj user;
 }

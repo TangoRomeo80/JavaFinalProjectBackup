@@ -10,13 +10,13 @@
  */
 package inventorymanagement;
 
-import BusinessLayer.CategoryBl;
-import ObjectFactory.CategoryOF;
+import Executor.CategoryEx;
+import Object.CategoryObj;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author chhabi
+ * @author Rahat
  */
 public class CategoryRegister extends javax.swing.JInternalFrame {
 
@@ -141,11 +141,11 @@ private void btnCategoryRegisterActionPerformed(java.awt.event.ActionEvent evt) 
         }
       if(errorMsg.isEmpty()){  
         
-        category = new CategoryOF();
-        category.setCat_id(0);
-        category.setCat_name(txtCategoryName.getText());
-        category.setCat_detail(txtCategoryDetail.getText());
-        blCategory = new CategoryBl(category);
+        category = new CategoryObj();
+        category.setCatId(0);
+        category.setCatName(txtCategoryName.getText());
+        category.setCatDetail(txtCategoryDetail.getText());
+        blCategory = new CategoryEx(category);
         if(blCategory.insertcategory()){
           JOptionPane.showMessageDialog(this, "Category Created Successfully", "Operation Successful", JOptionPane.INFORMATION_MESSAGE);
         }else{
@@ -176,6 +176,6 @@ private void btnCategoryResetActionPerformed(java.awt.event.ActionEvent evt) {//
     private javax.swing.JTextArea txtCategoryDetail;
     private javax.swing.JTextField txtCategoryName;
     // End of variables declaration//GEN-END:variables
-    private CategoryBl blCategory;
-    private CategoryOF category;
+    private CategoryEx blCategory;
+    private CategoryObj category;
 }

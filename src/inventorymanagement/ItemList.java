@@ -10,13 +10,13 @@
  */
 package inventorymanagement;
 
-import BusinessLayer.CategoryBl;
-import BusinessLayer.ItemBl;
-import BusinessLayer.SupplierBl;
-import DatabaseLayer.GlobalConnection;
-import ObjectFactory.CategoryOF;
-import ObjectFactory.ItemOF;
-import ObjectFactory.SupplierOF;
+import Executor.CategoryEx;
+import Executor.ItemEx;
+import Executor.SupplierEx;
+import Databse.GlobalConnection;
+import Object.CategoryObj;
+import Object.ItemObj;
+import Object.SupplierObj;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,7 +26,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author chhabi
+ * @author Rahat
  */
 public class ItemList extends javax.swing.JInternalFrame {
     
@@ -38,11 +38,11 @@ public class ItemList extends javax.swing.JInternalFrame {
         initComponents();
         
         // category name in combo box
-        CategoryBl cb = new CategoryBl();
+        CategoryEx cb = new CategoryEx();
         try{
-            ArrayList<CategoryOF> ct = cb.getcategoryList();
+            ArrayList<CategoryObj> ct = cb.getcategoryList();
             for( int i=0; i<ct.size(); ++i){
-                cmbCategoryName.addItem(ct.get(i).getCat_name());
+                cmbCategoryName.addItem(ct.get(i).getCatName());
             }
         
         }catch(Exception ex){
@@ -50,19 +50,19 @@ public class ItemList extends javax.swing.JInternalFrame {
         }
         
         // supplier name in combo box
-        SupplierBl sb = new SupplierBl();
+        SupplierEx sb = new SupplierEx();
         try{
-            ArrayList<SupplierOF> ct = sb.getsupplierList();
+            ArrayList<SupplierObj> ct = sb.getsupplierList();
             for( int i=0; i<ct.size(); ++i){
-                cmbSupplierName.addItem(ct.get(i).getSupplier_name());
+                cmbSupplierName.addItem(ct.get(i).getsupplierName());
             }
         
         }catch(Exception ex){
             JOptionPane.showMessageDialog(this, ex);
         }
         
-        item   = new ItemOF();
-        blitem = new ItemBl();
+        item   = new ItemObj();
+        blitem = new ItemEx();
         DefaultTableModel dtm = new DefaultTableModel();
         try{
             dtm.addColumn("Id");
@@ -75,9 +75,9 @@ public class ItemList extends javax.swing.JInternalFrame {
             dtm.addColumn("Supplied Date");
             dtm.addColumn("Detail");
                                     
-            ArrayList<ItemOF> items = blitem.getItemList();
+            ArrayList<ItemObj> items = blitem.getItemList();
             for(int i=0; i<items.size(); ++i ){
-              Object[] data = { items.get(i).getItem_id(), items.get(i).getItem_name(), items.get(i).getCat_name(), items.get(i).getSupplier_name(), items.get(i).getItem_rate(), items.get(i).getItem_quantity(), items.get(i).getItem_order_date(), items.get(i).getItem_supplied_date(), items.get(i).getItem_detail() };
+              Object[] data = { items.get(i).getItemId(), items.get(i).getitemName(), items.get(i).getCatName(), items.get(i).getsupplierName(), items.get(i).getitemRate(), items.get(i).getitemQuantity(), items.get(i).getitemOrderDate(), items.get(i).getitemSuppliedDate(), items.get(i).getitemDetail() };
               dtm.addRow(data);
             }
             tblItemList.setModel(dtm);
@@ -380,25 +380,25 @@ private void btnSelectedItemActionPerformed(java.awt.event.ActionEvent evt) {//G
 private void btnUpdateItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateItemActionPerformed
 // TODO add your handling code here:
     try {
-       item = new ItemOF();
-       item.setItem_id(Integer.parseInt(txtItemId.getText()));
-       item.setItem_name( new String(txtItemName.getText())); 
-       item.setCat_name(cmbCategoryName.getSelectedItem().toString());
-       item.setSupplier_name(cmbSupplierName.getSelectedItem().toString());
-       item.setItem_rate(Integer.parseInt(txtItemRate.getText()));
-       item.setItem_quantity(Integer.parseInt(txtItemQuantity.getText()));
+       item = new ItemObj();
+       item.setItemId(Integer.parseInt(txtItemId.getText()));
+       item.setitemName( new String(txtItemName.getText())); 
+       item.setCatName(cmbCategoryName.getSelectedItem().toString());
+       item.setsupplierName(cmbSupplierName.getSelectedItem().toString());
+       item.setitemRate(Integer.parseInt(txtItemRate.getText()));
+       item.setitemQuantity(Integer.parseInt(txtItemQuantity.getText()));
        
        Date dtt = txtItemOrderDate.getDate();
        SimpleDateFormat ftt = new SimpleDateFormat("yyyy-MM-dd");
-       item.setItem_order_date(ftt.format(dtt).toString());
+       item.setitemOrderDate(ftt.format(dtt).toString());
 
        Date ddd = txtItemSuppliedDate.getDate();
        SimpleDateFormat fff = new SimpleDateFormat("yyyy-MM-dd");
-       item.setItem_supplied_date(fff.format(ddd).toString());
+       item.setitemSuppliedDate(fff.format(ddd).toString());
        
-       item.setItem_detail( new String(txtItemDetail.getText()));
+       item.setitemDetail( new String(txtItemDetail.getText()));
        
-       blitem = new ItemBl(item);   
+       blitem = new ItemEx(item);   
        if(blitem.updateItem()){
            JOptionPane.showMessageDialog(this, "Item Updated Successfully", "Operation Successfull", JOptionPane.INFORMATION_MESSAGE);
            this.dispose();
@@ -417,7 +417,7 @@ private void btnUpdateItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN
 private void btnItemSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnItemSearchActionPerformed
 // TODO add your handling code here:
         try{
-            item.setItem_name(txtSearchItem.getText().toString());
+            item.setitemName(txtSearchItem.getText().toString());
             DefaultTableModel dtm = new DefaultTableModel();
             dtm.addColumn("Id");
             dtm.addColumn("Name");            
@@ -429,11 +429,11 @@ private void btnItemSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN
             dtm.addColumn("Category Name");
             dtm.addColumn("Supplier Name");
            
-            blitem = new ItemBl(item);
-            ArrayList<ItemOF>items = blitem.searchItem();
+            blitem = new ItemEx(item);
+            ArrayList<ItemObj>items = blitem.searchItem();
                 if(items.size() > 0){
                     for( int i=0; i<items.size(); i++){
-                        Object[] data = { items.get(i).getItem_id(), items.get(i).getItem_name(),  items.get(i).getItem_rate(), items.get(i).getItem_quantity(), items.get(i).getItem_order_date(), items.get(i).getItem_supplied_date(), items.get(i).getItem_detail(),items.get(i).getCat_name(), items.get(i).getSupplier_name() };
+                        Object[] data = { items.get(i).getItemId(), items.get(i).getitemName(),  items.get(i).getitemRate(), items.get(i).getitemQuantity(), items.get(i).getitemOrderDate(), items.get(i).getitemSuppliedDate(), items.get(i).getitemDetail(),items.get(i).getCatName(), items.get(i).getsupplierName() };
                         dtm.addRow(data);                    
                     }
                     tblItemList.setModel(dtm);
@@ -475,6 +475,6 @@ private void btnItemSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     private com.toedter.calendar.JDateChooser txtItemSuppliedDate;
     private javax.swing.JTextField txtSearchItem;
     // End of variables declaration//GEN-END:variables
-    private ItemOF item;
-    private ItemBl blitem;
+    private ItemObj item;
+    private ItemEx blitem;
 }

@@ -10,14 +10,14 @@
  */
 package inventorymanagement;
 
-import DatabaseLayer.DataBase;
+import Databse.DataBase;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author chhabi
+ * @author Rahat
  */
 public class DbBackUp extends javax.swing.JInternalFrame {
 

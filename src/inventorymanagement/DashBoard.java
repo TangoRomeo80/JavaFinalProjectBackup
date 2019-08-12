@@ -10,14 +10,14 @@
  */
 package inventorymanagement;
 
-import ObjectFactory.UserOF;
+import Object.UserObj;
 
 /**
  *
- * @author chhabi
+ * @author Rahat
  */
 public class DashBoard extends javax.swing.JFrame {
-     private UserOF user;
+     private UserObj user;
      
     /** Creates new form DashBoard */
     public DashBoard() {
@@ -25,15 +25,15 @@ public class DashBoard extends javax.swing.JFrame {
         this.user = user;
     }
     
-    public UserOF getUser() {
+    public UserObj getUser() {
         return user;
     }
 
-    public void setUser(UserOF user) {
+    public void setUser(UserObj user) {
         this.user = user;
         String a = "Guest"; // Guest is from dropdown of Combobox
         
-        if(this.user.getUser_type().equals(a)){
+        if(this.user.getuserType().equals(a)){
             menuUsers.hide();  // Hide the menuBackup
         }
     }

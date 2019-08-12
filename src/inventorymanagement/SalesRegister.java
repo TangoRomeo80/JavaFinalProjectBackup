@@ -10,10 +10,10 @@
  */
 package inventorymanagement;
 
-import BusinessLayer.ItemBl;
-import BusinessLayer.SalesBl;
-import ObjectFactory.ItemOF;
-import ObjectFactory.SalesOF;
+import Executor.ItemEx;
+import Executor.SalesEx;
+import Object.ItemObj;
+import Object.SalesObj;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author chhabi
+ * @author Rahat
  */
 public class SalesRegister extends javax.swing.JInternalFrame {
 
@@ -30,12 +30,12 @@ public class SalesRegister extends javax.swing.JInternalFrame {
         initComponents();
        
       // Get item name in comobox  
-      ItemBl blItem = new ItemBl();
+      ItemEx blItem = new ItemEx();
       try {          
-           ArrayList<ItemOF> itmName = blItem.getItemList();
+           ArrayList<ItemObj> itmName = blItem.getItemList();
            for(int i=0; i<itmName.size(); ++i )           
            {     
-             cmbItemName.addItem(itmName.get(i).getItem_name());             
+             cmbItemName.addItem(itmName.get(i).getitemName());             
            }
       }catch(Exception e){
           JOptionPane.showMessageDialog(this, "No Item Name.\n" + e);
@@ -225,21 +225,21 @@ private void btnSalesRegisterActionPerformed(java.awt.event.ActionEvent evt) {//
         }
       if(errorMsg.isEmpty()){ 
                 
-        sales = new SalesOF();
-        sales.setSales_id(0);
-        sales.setSales_customer_name(txtSaleCustomerName.getText());
-        sales.setSales_customer_address(txtSaleCustomerAddress.getText());
+        sales = new SalesObj();
+        sales.setsalesId(0);
+        sales.setsalesCustomerName(txtSaleCustomerName.getText());
+        sales.setsalesCustomerAddress(txtSaleCustomerAddress.getText());
 
         Date sd = txtSalesDate.getDate();
         SimpleDateFormat sale_date =new SimpleDateFormat("yyyy-MM-dd");
-        sales.setSales_date(sale_date.format(sd).toString());
+        sales.setsalesDate(sale_date.format(sd).toString());
         
-        sales.setSales_bill_no(Integer.parseInt(txtBillNo.getText()));
-        sales.setSales_rate(Integer.parseInt(txtSalesRate.getText()));
-        sales.setSales_quantity(Integer.parseInt(txtSalesQuantity.getText()));
-        sales.setItem_name(cmbItemName.getSelectedItem().toString());        
+        sales.setsalesBillNo(Integer.parseInt(txtBillNo.getText()));
+        sales.setsalesRate(Integer.parseInt(txtSalesRate.getText()));
+        sales.setsalesQuantity(Integer.parseInt(txtSalesQuantity.getText()));
+        sales.setitemName(cmbItemName.getSelectedItem().toString());        
 
-        blSales = new SalesBl(sales);
+        blSales = new SalesEx(sales);
         if(blSales.insertSales()){
           JOptionPane.showMessageDialog(this, "Sales Created Successfully", "Operation Successful", JOptionPane.INFORMATION_MESSAGE);
         }else{
@@ -283,6 +283,6 @@ private void btnSalesResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     private javax.swing.JTextField txtSalesQuantity;
     private javax.swing.JTextField txtSalesRate;
     // End of variables declaration//GEN-END:variables
-    private SalesBl blSales;
-    private SalesOF sales;
+    private SalesEx blSales;
+    private SalesObj sales;
 }

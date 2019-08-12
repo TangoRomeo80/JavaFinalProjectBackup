@@ -5,8 +5,8 @@
  */
 package inventorymanagement;
 
-import BusinessLayer.SupplierBl;
-import ObjectFactory.SupplierOF;
+import Executor.SupplierEx;
+import Object.SupplierObj;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author chabbi
+ * @author Rahat
  */
 public class ReportSupplier extends javax.swing.JInternalFrame {
 
@@ -24,8 +24,8 @@ public class ReportSupplier extends javax.swing.JInternalFrame {
      */
     public ReportSupplier() {
         initComponents();
-        supplier = new SupplierOF();
-        blsupplier = new SupplierBl();
+        supplier = new SupplierObj();
+        blsupplier = new SupplierEx();
         DefaultTableModel dtm = new DefaultTableModel();
         try{
 
@@ -35,9 +35,9 @@ public class ReportSupplier extends javax.swing.JInternalFrame {
             dtm.addColumn("Supplier Address");
             dtm.addColumn("Supplier Detail");
                         
-            ArrayList<SupplierOF> suppliers = blsupplier.getsupplierList();
+            ArrayList<SupplierObj> suppliers = blsupplier.getsupplierList();
             for(int i=0; i<suppliers.size(); ++i ){
-              Object[] data = { suppliers.get(i).getSupplier_id(), suppliers.get(i).getSupplier_name(), suppliers.get(i).getSupplier_phone(), suppliers.get(i).getSupplier_address(), suppliers.get(i).getSupplier_detail()};
+              Object[] data = { suppliers.get(i).getsupplierId(), suppliers.get(i).getsupplierName(), suppliers.get(i).getsupplierPhone(), suppliers.get(i).getsupplierAddress(), suppliers.get(i).getsupplierDetail()};
               dtm.addRow(data);
             }
             tblViewSupplier.setModel(dtm);
@@ -179,6 +179,6 @@ public class ReportSupplier extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblViewSupplier;
     // End of variables declaration//GEN-END:variables
-    private SupplierOF supplier;
-    private SupplierBl blsupplier;
+    private SupplierObj supplier;
+    private SupplierEx blsupplier;
 }

@@ -10,10 +10,10 @@
  */
 package inventorymanagement;
 
-import BusinessLayer.DamageBl;
-import BusinessLayer.ItemBl;
-import ObjectFactory.DamageOF;
-import ObjectFactory.ItemOF;
+import Executor.DamageEx;
+import Executor.ItemEx;
+import Object.DamageObj;
+import Object.ItemObj;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author chhabi
+ * @author Rahat
  */
 public class DamageRegister extends javax.swing.JInternalFrame {
 
@@ -30,12 +30,12 @@ public class DamageRegister extends javax.swing.JInternalFrame {
         initComponents();
         
         // Get item name in comobox  
-        ItemBl rtBl = new ItemBl();
+        ItemEx rtBl = new ItemEx();
         try {          
-             ArrayList<ItemOF> itemName = rtBl.getItemList();
+             ArrayList<ItemObj> itemName = rtBl.getItemList();
              for(int i=0; i<itemName.size(); ++i )           
              {     
-               cmbItemName.addItem(itemName.get(i).getItem_name());             
+               cmbItemName.addItem(itemName.get(i).getitemName());             
              }
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, "No Item Name.\n" + e);
@@ -59,7 +59,7 @@ public class DamageRegister extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         txtDamageName = new javax.swing.JTextField();
         txtDamageQuantity = new javax.swing.JTextField();
-        txtDamageDetail = new javax.swing.JTextField();
+        txtdamageId = new javax.swing.JTextField();
         cmbItemName = new javax.swing.JComboBox();
         btnRegisterDamage = new javax.swing.JButton();
         btnResetDamage = new javax.swing.JButton();
@@ -121,7 +121,7 @@ public class DamageRegister extends javax.swing.JInternalFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(txtDamageName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
                         .addComponent(txtDamageQuantity, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
-                        .addComponent(txtDamageDetail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                        .addComponent(txtdamageId, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
                         .addComponent(cmbItemName, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(135, Short.MAX_VALUE))
         );
@@ -141,7 +141,7 @@ public class DamageRegister extends javax.swing.JInternalFrame {
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtDamageDetail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtdamageId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
@@ -183,19 +183,19 @@ private void btnRegisterDamageActionPerformed(java.awt.event.ActionEvent evt) {/
         }
       if(errorMsg.isEmpty()){  
         
-        damage = new DamageOF();
-        damage.setDamage_id(0);
-        damage.setDamage_name(txtDamageName.getText());
-        damage.setDamage_quantity(Integer.parseInt(txtDamageQuantity.getText()));
+        damage = new DamageObj();
+        damage.setDamageId(0);
+        damage.setDamageName(txtDamageName.getText());
+        damage.setDamageQuantity(Integer.parseInt(txtDamageQuantity.getText()));
 
         Date rd = txtDamageDate.getDate();
         SimpleDateFormat dd =new SimpleDateFormat("yyyy-MM-dd");
-        damage.setDamage_date(dd.format(rd).toString());
+        damage.setDamageDate(dd.format(rd).toString());
 
-        damage.setDamage_detail(txtDamageDetail.getText());
-        damage.setItem_name(cmbItemName.getSelectedItem().toString());
+        damage.setDamageDetail(txtdamageId.getText());
+        damage.setitemName(cmbItemName.getSelectedItem().toString());
 
-        blDamage = new DamageBl(damage);
+        blDamage = new DamageEx(damage);
         if(blDamage.insertdamage()){
           JOptionPane.showMessageDialog(this, "Damage Created Successfully", "Operation Successful", JOptionPane.INFORMATION_MESSAGE);
         }else{
@@ -214,7 +214,7 @@ private void btnResetDamageActionPerformed(java.awt.event.ActionEvent evt) {//GE
         txtDamageName.setText("");
         txtDamageQuantity.setText("");
         txtDamageDate.setDateFormatString("");
-        txtDamageDetail.setText("");        
+        txtdamageId.setText("");        
 }//GEN-LAST:event_btnResetDamageActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -228,10 +228,10 @@ private void btnResetDamageActionPerformed(java.awt.event.ActionEvent evt) {//GE
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private com.toedter.calendar.JDateChooser txtDamageDate;
-    private javax.swing.JTextField txtDamageDetail;
+    private javax.swing.JTextField txtdamageId;
     private javax.swing.JTextField txtDamageName;
     private javax.swing.JTextField txtDamageQuantity;
     // End of variables declaration//GEN-END:variables
-    private DamageBl blDamage;
-    private DamageOF damage;
+    private DamageEx blDamage;
+    private DamageObj damage;
 }

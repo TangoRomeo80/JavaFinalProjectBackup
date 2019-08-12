@@ -10,8 +10,8 @@
  */
 package inventorymanagement;
 
-import BusinessLayer.UserBl;
-import ObjectFactory.UserOF;
+import Executor.UserEx;
+import Object.UserObj;
 import java.util.ArrayList;
 import java.util.Locale;
 import javax.swing.JOptionPane;
@@ -19,15 +19,15 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author chhabi
+ * @author Rahat
  */
 public class UserList extends javax.swing.JInternalFrame {
 
     /** Creates new form UserList */
     public UserList() {
         initComponents();
-        user = new UserOF();
-        blUser = new UserBl();
+        user = new UserObj();
+        blUser = new UserEx();
         DefaultTableModel dtm = new DefaultTableModel();
         try{
 
@@ -37,9 +37,9 @@ public class UserList extends javax.swing.JInternalFrame {
             dtm.addColumn("User Email");
             dtm.addColumn("User Type");
 
-            ArrayList<UserOF> users = blUser.getUserList();
+            ArrayList<UserObj> users = blUser.getUserList();
             for(int i=0; i<users.size(); ++i ){
-              Object[] data = { users.get(i).getUser_id(), users.get(i).getUser_name(),/*  users.get(i).getUser_password(),*/ users.get(i).getUser_email(), users.get(i).getUser_type()};
+              Object[] data = { users.get(i).getuserId(), users.get(i).getuserName(),/*  users.get(i).getuserPassword(),*/ users.get(i).getuserEmail(), users.get(i).getuserType()};
               dtm.addRow(data);
             }
             tblUsersList.setModel(dtm);
@@ -50,11 +50,11 @@ public class UserList extends javax.swing.JInternalFrame {
         }
     }
     
-    public UserOF getUser() {
+    public UserObj getUser() {
         return user;
     }
 
-    public void setUser(UserOF user) {
+    public void setUser(UserObj user) {
         this.user = user;
     }
 
@@ -272,12 +272,12 @@ private void btnEditSelectedUserActionPerformed(java.awt.event.ActionEvent evt) 
 private void btnUserUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserUpdateActionPerformed
 // TODO add your handling code here:
     try{
-      user = new UserOF();
-      user.setUser_id(Integer.parseInt(txtUserId.getText()));
-      user.setUser_name( new String(txtUserName.getText()));
-      user.setUser_email( new String(txtUserEmail.getText()));
-      user.setUser_type(cmbUserType.getSelectedItem().toString());
-      blUser = new UserBl(user);
+      user = new UserObj();
+      user.setuserId(Integer.parseInt(txtUserId.getText()));
+      user.setuserName( new String(txtUserName.getText()));
+      user.setuserEmail( new String(txtUserEmail.getText()));
+      user.setuserType(cmbUserType.getSelectedItem().toString());
+      blUser = new UserEx(user);
       if(blUser.updateUser()){
         JOptionPane.showMessageDialog(this, "User Updated Successfully", "Operation Successful", JOptionPane.INFORMATION_MESSAGE);
       
@@ -294,9 +294,9 @@ private void btnUserUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN
 private void btnUserDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserDeleteActionPerformed
 // TODO add your handling code here:
     try{
-        user = new UserOF();
-        user.setUser_id(Integer.parseInt(txtUserId.getText()));
-        blUser = new UserBl(user);
+        user = new UserObj();
+        user.setuserId(Integer.parseInt(txtUserId.getText()));
+        blUser = new UserEx(user);
         if(blUser.deleteUser()){
             JOptionPane.showMessageDialog(null, "User Deleted Successfully", "Operation Successfull", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
@@ -312,15 +312,15 @@ private void btnUserDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN
 private void txtUserSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserSearchKeyReleased
 // TODO add your handling code here
 //    try{
-//      user = new UserOF();
-//      user.setUser_id(Integer.parseInt(txtUserId.getText()));
-//      user.setUser_name( new String(txtUserName.getText()));
-//      user.setUser_email( new String(txtUserEmail.getText()));
-//      user.setUser_type(cmbUserType.getSelectedItem().toString());
-//      blUser = new UserBl(user);
+//      user = new UserObj();
+//      user.setuserId(Integer.parseInt(txtUserId.getText()));
+//      user.setuserName( new String(txtUserName.getText()));
+//      user.setuserEmail( new String(txtUserEmail.getText()));
+//      user.setuserType(cmbUserType.getSelectedItem().toString());
+//      blUser = new UserEx(user);
 //      ArrayList<UserOF> users = blUser.searchUser();
 //        for(int i=0; i<users.size(); ++i ){
-//          Object[] data = { users.get(i).getUser_id(), users.get(i).getUser_name(), users.get(i).getUser_email(), users.get(i).getUser_type()};
+//          Object[] data = { users.get(i).getuserId(), users.get(i).getuserName(), users.get(i).getuserEmail(), users.get(i).getuserType()};
 //            txtUserId.setText(tblUsersList.getModel().getValueAt(tblUsersList.getSelectedRow(), 0).toString());
 //            txtUserName.setText(tblUsersList.getModel().getValueAt(tblUsersList.getSelectedRow(), 1).toString());
 //            txtUserEmail.setText(tblUsersList.getModel().getValueAt(tblUsersList.getSelectedRow(), 2).toString());
@@ -335,18 +335,18 @@ private void btnUserSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN
 // TODO add your handling code here:        
         //initComponents();
         try{
-            user.setUser_name(txtUserSearch.getText());
+            user.setuserName(txtUserSearch.getText());
             DefaultTableModel dtm = new DefaultTableModel();
             dtm.addColumn("User Id");
             dtm.addColumn("User Name");
             dtm.addColumn("User Email");
             dtm.addColumn("User Type");
             
-            blUser = new UserBl(user);
-            ArrayList<UserOF> users = blUser.searchUser();
+            blUser = new UserEx(user);
+            ArrayList<UserObj> users = blUser.searchUser();
                 if(users.size() > 0){
                     for( int i=0; i<users.size(); i++){
-                        Object[] data = { users.get(i).getUser_id(), users.get(i).getUser_name(), users.get(i).getUser_email(), users.get(i).getUser_type()};
+                        Object[] data = { users.get(i).getuserId(), users.get(i).getuserName(), users.get(i).getuserEmail(), users.get(i).getuserType()};
                         dtm.addRow(data);                    
                     }
                     tblUsersList.setModel(dtm);
@@ -385,7 +385,7 @@ private void cmbUserTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private javax.swing.JTextField txtUserName;
     private javax.swing.JTextField txtUserSearch;
     // End of variables declaration//GEN-END:variables
-    private UserOF user;
-    private UserBl blUser;
+    private UserObj user;
+    private UserEx blUser;
     
 }

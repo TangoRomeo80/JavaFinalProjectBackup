@@ -10,23 +10,23 @@
  */
 package inventorymanagement;
 
-import BusinessLayer.SupplierBl;
-import ObjectFactory.SupplierOF;
+import Executor.SupplierEx;
+import Object.SupplierObj;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author chhabi
+ * @author Rahat
  */
 public class SupplierList extends javax.swing.JInternalFrame {
 
     /** Creates new form SupplierList */
     public SupplierList() {
         initComponents();
-        supplier = new SupplierOF();
-        blsupplier = new SupplierBl();
+        supplier = new SupplierObj();
+        blsupplier = new SupplierEx();
         DefaultTableModel dtm = new DefaultTableModel();
         try{
 
@@ -36,9 +36,9 @@ public class SupplierList extends javax.swing.JInternalFrame {
             dtm.addColumn("Supplier Address");
             dtm.addColumn("Supplier Detail");
                         
-            ArrayList<SupplierOF> suppliers = blsupplier.getsupplierList();
+            ArrayList<SupplierObj> suppliers = blsupplier.getsupplierList();
             for(int i=0; i<suppliers.size(); ++i ){
-              Object[] data = { suppliers.get(i).getSupplier_id(), suppliers.get(i).getSupplier_name(), suppliers.get(i).getSupplier_phone(), suppliers.get(i).getSupplier_address(), suppliers.get(i).getSupplier_detail()};
+              Object[] data = { suppliers.get(i).getsupplierId(), suppliers.get(i).getsupplierName(), suppliers.get(i).getsupplierPhone(), suppliers.get(i).getsupplierAddress(), suppliers.get(i).getsupplierDetail()};
               dtm.addRow(data);
             }
             tblSupplierList.setModel(dtm);
@@ -255,13 +255,13 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 private void btnSupplierUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierUpdateActionPerformed
 // TODO add your handling code here:
     try{
-      supplier = new SupplierOF();
-      supplier.setSupplier_id(Integer.parseInt(txtSupplierId.getText()));
-      supplier.setSupplier_name(txtSupplierName.getText());
-      supplier.setSupplier_phone(txtSupplierPhone.getText());
-      supplier.setSupplier_address(txtSupplierAddress.getText());
-      supplier.setSupplier_detail(txtSupplierDetail.getText());
-      blsupplier = new SupplierBl(supplier);
+      supplier = new SupplierObj();
+      supplier.setsupplierId(Integer.parseInt(txtSupplierId.getText()));
+      supplier.setsupplierName(txtSupplierName.getText());
+      supplier.setsupplierPhone(txtSupplierPhone.getText());
+      supplier.setsupplierAddress(txtSupplierAddress.getText());
+      supplier.setsupplierDetail(txtSupplierDetail.getText());
+      blsupplier = new SupplierEx(supplier);
       if(blsupplier.updatesupplier()){
         JOptionPane.showMessageDialog(this, "Supplier Updated Successfully", "Operation Successful", JOptionPane.INFORMATION_MESSAGE);
         this.dispose();
@@ -277,9 +277,9 @@ private void btnSupplierUpdateActionPerformed(java.awt.event.ActionEvent evt) {/
 private void btnSupplierDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierDeleteActionPerformed
 // TODO add your handling code here:
      try {
-        supplier = new SupplierOF();
-        supplier.setSupplier_id(Integer.parseInt(txtSupplierId.getText()));
-        blsupplier = new SupplierBl(supplier);
+        supplier = new SupplierObj();
+        supplier.setsupplierId(Integer.parseInt(txtSupplierId.getText()));
+        blsupplier = new SupplierEx(supplier);
         if(blsupplier.deletesupplier()){
           JOptionPane.showMessageDialog(this, "Supplier Deleted Successfully", "Operation Successful", JOptionPane.INFORMATION_MESSAGE);  
           this.dispose();
@@ -295,7 +295,7 @@ private void btnSupplierDeleteActionPerformed(java.awt.event.ActionEvent evt) {/
 private void btnSupplierSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierSearchActionPerformed
 // TODO add your handling code here:
      try{
-            supplier.setSupplier_name(txtSearchSupplier.getText());
+            supplier.setsupplierName(txtSearchSupplier.getText());
             DefaultTableModel dtm = new DefaultTableModel();
             dtm.addColumn("Supplier Id");
             dtm.addColumn("Supplier Name");
@@ -303,11 +303,11 @@ private void btnSupplierSearchActionPerformed(java.awt.event.ActionEvent evt) {/
             dtm.addColumn("Supplier Address");
             dtm.addColumn("Supplier Detail");            
             
-            blsupplier = new SupplierBl(supplier);
-            ArrayList<SupplierOF> suppliers = blsupplier.searchsupplier();
+            blsupplier = new SupplierEx(supplier);
+            ArrayList<SupplierObj> suppliers = blsupplier.searchsupplier();
                 if(suppliers.size() > 0){
                     for( int i=0; i<suppliers.size(); i++){
-                        Object[] data = { suppliers.get(i).getSupplier_id(), suppliers.get(i).getSupplier_name(), suppliers.get(i).getSupplier_phone(), suppliers.get(i).getSupplier_address(),suppliers.get(i).getSupplier_detail() };
+                        Object[] data = { suppliers.get(i).getsupplierId(), suppliers.get(i).getsupplierName(), suppliers.get(i).getsupplierPhone(), suppliers.get(i).getsupplierAddress(),suppliers.get(i).getsupplierDetail() };
                         dtm.addRow(data);                    
                     }
                     tblSupplierList.setModel(dtm);
@@ -345,6 +345,6 @@ private void btnSupplierSearchActionPerformed(java.awt.event.ActionEvent evt) {/
     private javax.swing.JTextField txtSupplierName;
     private javax.swing.JTextField txtSupplierPhone;
     // End of variables declaration//GEN-END:variables
-    private SupplierOF supplier;
-    private SupplierBl blsupplier;
+    private SupplierObj supplier;
+    private SupplierEx blsupplier;
 }

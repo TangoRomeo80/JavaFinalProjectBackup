@@ -5,8 +5,8 @@
  */
 package inventorymanagement;
 
-import BusinessLayer.ItemBl;
-import ObjectFactory.ItemOF;
+import Executor.ItemEx;
+import Object.ItemObj;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author chabbi
+ * @author Rahat
  */
 public class ReportItem extends javax.swing.JInternalFrame {
 
@@ -25,8 +25,8 @@ public class ReportItem extends javax.swing.JInternalFrame {
     public ReportItem() {
         initComponents();
         
-        item   = new ItemOF();
-        blitem = new ItemBl();
+        item   = new ItemObj();
+        blitem = new ItemEx();
         DefaultTableModel dtm = new DefaultTableModel();
         try{
             dtm.addColumn("Id");
@@ -39,9 +39,9 @@ public class ReportItem extends javax.swing.JInternalFrame {
             dtm.addColumn("Supplied Date");
             dtm.addColumn("Detail");
                                     
-            ArrayList<ItemOF> items = blitem.getItemList();
+            ArrayList<ItemObj> items = blitem.getItemList();
             for(int i=0; i<items.size(); ++i ){
-              Object[] data = { items.get(i).getItem_id(), items.get(i).getItem_name(), items.get(i).getCat_name(), items.get(i).getSupplier_name(), items.get(i).getItem_rate(), items.get(i).getItem_quantity(), items.get(i).getItem_order_date(), items.get(i).getItem_supplied_date(), items.get(i).getItem_detail() };
+              Object[] data = { items.get(i).getItemId(), items.get(i).getitemName(), items.get(i).getCatName(), items.get(i).getsupplierName(), items.get(i).getitemRate(), items.get(i).getitemQuantity(), items.get(i).getitemOrderDate(), items.get(i).getitemSuppliedDate(), items.get(i).getitemDetail() };
               dtm.addRow(data);
             }
             tblViewItem.setModel(dtm);
@@ -186,6 +186,6 @@ public class ReportItem extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblViewItem;
     // End of variables declaration//GEN-END:variables
-    private ItemOF item;
-    private ItemBl blitem;
+    private ItemObj item;
+    private ItemEx blitem;
 }

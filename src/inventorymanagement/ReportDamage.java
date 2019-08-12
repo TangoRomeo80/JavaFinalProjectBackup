@@ -5,8 +5,8 @@
  */
 package inventorymanagement;
 
-import BusinessLayer.DamageBl;
-import ObjectFactory.DamageOF;
+import Executor.DamageEx;
+import Object.DamageObj;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author chabbi
+ * @author Rahat
  */
 public class ReportDamage extends javax.swing.JInternalFrame {
 
@@ -25,8 +25,8 @@ public class ReportDamage extends javax.swing.JInternalFrame {
     public ReportDamage() {
         initComponents();
         
-        damage = new DamageOF();
-        bldamage = new DamageBl();
+        damage = new DamageObj();
+        bldamage = new DamageEx();
         DefaultTableModel dtm = new DefaultTableModel();
         try{
 
@@ -37,9 +37,9 @@ public class ReportDamage extends javax.swing.JInternalFrame {
             dtm.addColumn("Damage Detail");
             dtm.addColumn("Item Name");
                         
-            ArrayList<DamageOF> damages = bldamage.getdamageList();
+            ArrayList<DamageObj> damages = bldamage.getdamageList();
             for(int i=0; i<damages.size(); ++i ){
-              Object[] data = { damages.get(i).getDamage_id(), damages.get(i).getDamage_name(), damages.get(i).getDamage_quantity(), damages.get(i).getDamage_date(), damages.get(i).getDamage_detail(), damages.get(i).getItem_name() };
+              Object[] data = { damages.get(i).getDamageId(), damages.get(i).getDamageName(), damages.get(i).getDamageQuantity(), damages.get(i).getDamageDate(), damages.get(i).getDamageDetail(), damages.get(i).getitemName() };
               dtm.addRow(data);
             }
             tblViewDamage.setModel(dtm);
@@ -176,6 +176,6 @@ public class ReportDamage extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblViewDamage;
     // End of variables declaration//GEN-END:variables
-    private DamageOF damage;
-    private DamageBl bldamage;
+    private DamageObj damage;
+    private DamageEx bldamage;
 }

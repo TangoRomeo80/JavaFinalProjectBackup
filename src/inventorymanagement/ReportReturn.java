@@ -5,8 +5,8 @@
  */
 package inventorymanagement;
 
-import BusinessLayer.ReturnBl;
-import ObjectFactory.ReturnOF;
+import Executor.ReturnEx;
+import Object.ReturnObj;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author chabbi
+ * @author Rahat
  */
 public class ReportReturn extends javax.swing.JInternalFrame {
 
@@ -25,8 +25,8 @@ public class ReportReturn extends javax.swing.JInternalFrame {
     public ReportReturn() {
         initComponents();
         
-        rturn = new ReturnOF();
-        blRturn = new ReturnBl();
+        rturn = new ReturnObj();
+        blRturn = new ReturnEx();
         DefaultTableModel dtm = new DefaultTableModel();
         
         try{
@@ -36,9 +36,9 @@ public class ReportReturn extends javax.swing.JInternalFrame {
             dtm.addColumn("Return Date");
             dtm.addColumn("Item Name");
             
-            ArrayList<ReturnOF> rturn = blRturn.getRturnList();
+            ArrayList<ReturnObj> rturn = blRturn.getRturnList();
             for(int i=0; i<rturn.size(); ++i ){
-              Object[] data = { rturn.get(i).getReturn_id(), rturn.get(i).getReturn_name() ,rturn.get(i).getReturn_quantity(), rturn.get(i).getReturn_date(), rturn.get(i).getItem_name() };
+              Object[] data = { rturn.get(i).getreturnId(), rturn.get(i).getreturnName() ,rturn.get(i).getreturnQuantity(), rturn.get(i).getreturnDate(), rturn.get(i).getitemName() };
               dtm.addRow(data);
             }
             tblViewReturn.setModel(dtm);
@@ -180,6 +180,6 @@ public class ReportReturn extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblViewReturn;
     // End of variables declaration//GEN-END:variables
-    private ReturnOF rturn;
-    private ReturnBl blRturn;
+    private ReturnObj rturn;
+    private ReturnEx blRturn;
 }

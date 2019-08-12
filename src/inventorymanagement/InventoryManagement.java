@@ -6,7 +6,7 @@ package inventorymanagement;
 
 /**
  *
- * @author chhabi
+ * @author Rahat
  */
 public class InventoryManagement {
 

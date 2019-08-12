@@ -10,11 +10,11 @@
  */
 package inventorymanagement;
 
-import BusinessLayer.ItemBl;
-import BusinessLayer.SalesBl;
-import DatabaseLayer.GlobalConnection;
-import ObjectFactory.ItemOF;
-import ObjectFactory.SalesOF;
+import Executor.ItemEx;
+import Executor.SalesEx;
+import Databse.GlobalConnection;
+import Object.ItemObj;
+import Object.SalesObj;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author chhabi
+ * @author Rahat
  */
 public class SalesList extends javax.swing.JInternalFrame {
     
@@ -35,19 +35,19 @@ public class SalesList extends javax.swing.JInternalFrame {
         initComponents();
         
         // item name in combo box
-        ItemBl it = new ItemBl();
+        ItemEx it = new ItemEx();
         try{
-            ArrayList<ItemOF> itm = it.getItemList();
+            ArrayList<ItemObj> itm = it.getItemList();
             for( int i=0; i<itm.size(); ++i){
-                cmbItemName.addItem(itm.get(i).getItem_name());
+                cmbItemName.addItem(itm.get(i).getitemName());
             }
         
         }catch(Exception ex){
             JOptionPane.showMessageDialog(this, ex);
         }
         
-        sale = new SalesOF();
-        blsale = new SalesBl();
+        sale = new SalesObj();
+        blsale = new SalesEx();
         DefaultTableModel dtm = new DefaultTableModel();
         try{
             dtm.addColumn("Id");
@@ -59,9 +59,9 @@ public class SalesList extends javax.swing.JInternalFrame {
             dtm.addColumn("Quantity");
             dtm.addColumn("Item Name");
                                     
-            ArrayList<SalesOF> sales = blsale.getSalesList();
+            ArrayList<SalesObj> sales = blsale.getSalesList();
             for(int i=0; i<sales.size(); ++i ){
-              Object[] data = { sales.get(i).getSales_id(), sales.get(i).getSales_customer_name(), sales.get(i).getSales_customer_address(), sales.get(i).getSales_date(), sales.get(i).getSales_bill_no(), sales.get(i).getSales_rate(), sales.get(i).getSales_quantity(), sales.get(i).getItem_name() };
+              Object[] data = { sales.get(i).getsalesId(), sales.get(i).getsalesCustomerName(), sales.get(i).getsalesCustomerAddress(), sales.get(i).getsalesDate(), sales.get(i).getsalesBillNo(), sales.get(i).getsalesRate(), sales.get(i).getsalesQuantity(), sales.get(i).getitemName() };
               dtm.addRow(data);
             }
             tblSalesList.setModel(dtm);
@@ -343,21 +343,21 @@ private void btnSalesUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GE
 // TODO add your handling code here:
     
     try {
-       sale = new SalesOF();
-       sale.setSales_id(Integer.parseInt(txtSalesId.getText()));
-       sale.setSales_customer_name( new String(txtCustomerName.getText())); 
-       sale.setSales_customer_address( new String(txtCustomerAddress.getText()));
+       sale = new SalesObj();
+       sale.setsalesId(Integer.parseInt(txtSalesId.getText()));
+       sale.setsalesCustomerName( new String(txtCustomerName.getText())); 
+       sale.setsalesCustomerAddress( new String(txtCustomerAddress.getText()));
        
        Date dtt = txtSalesDate.getDate();
        SimpleDateFormat ftt = new SimpleDateFormat("yyyy-MM-dd");
-       sale.setSales_date(ftt.format(dtt).toString());
+       sale.setsalesDate(ftt.format(dtt).toString());
 
-       sale.setSales_bill_no(Integer.parseInt(txtBillNo.getText()));
-       sale.setSales_rate(Integer.parseInt(txtSaleRate.getText()));
-       sale.setSales_quantity(Integer.parseInt(txtSaleQuantity.getText()));
-       sale.setItem_name(cmbItemName.getSelectedItem().toString());
+       sale.setsalesBillNo(Integer.parseInt(txtBillNo.getText()));
+       sale.setsalesRate(Integer.parseInt(txtSaleRate.getText()));
+       sale.setsalesQuantity(Integer.parseInt(txtSaleQuantity.getText()));
+       sale.setitemName(cmbItemName.getSelectedItem().toString());
        
-       blsale = new SalesBl(sale);   
+       blsale = new SalesEx(sale);   
        if(blsale.updateSales()){
            JOptionPane.showMessageDialog(this, "Sales Updated Successfully", "Operation Successfull", JOptionPane.INFORMATION_MESSAGE);
            this.dispose();
@@ -376,9 +376,9 @@ private void btnSalesUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GE
 private void btnSalesDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalesDeleteActionPerformed
 // TODO add your handling code here:
      try{
-        sale = new SalesOF();
-        sale.setSales_id(Integer.parseInt(txtSalesId.getText()));
-        blsale = new SalesBl(sale);
+        sale = new SalesObj();
+        sale.setsalesId(Integer.parseInt(txtSalesId.getText()));
+        blsale = new SalesEx(sale);
         if(blsale.deleteSales()){
             JOptionPane.showMessageDialog(null, "Sales Item Deleted Successfully", "Operation Successfull", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
@@ -394,7 +394,7 @@ private void btnSalesDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GE
     private void btnSalesSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalesSearchActionPerformed
         // TODO add your handling code here:
         try{
-            sale.setSales_customer_name(txtSearchCustomerName.getText());
+            sale.setsalesCustomerName(txtSearchCustomerName.getText());
             DefaultTableModel dtm = new DefaultTableModel();
             dtm.addColumn("Id");
             dtm.addColumn("Customer Name");            
@@ -405,11 +405,11 @@ private void btnSalesDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GE
             dtm.addColumn("Quantity");
             dtm.addColumn("Item Name");            
            
-            blsale = new SalesBl(sale);
-            ArrayList<SalesOF>sls = blsale.searchSales();
+            blsale = new SalesEx(sale);
+            ArrayList<SalesObj>sls = blsale.searchSales();
                 if(sls.size() > 0){
                     for( int i=0; i<sls.size(); i++){
-                        Object[] data = { sls.get(i).getSales_id(), sls.get(i).getSales_customer_name(),  sls.get(i).getSales_customer_address(), sls.get(i).getSales_date(), sls.get(i).getSales_bill_no(), sls.get(i).getSales_rate(), sls.get(i).getSales_quantity(),sls.get(i).getItem_name() };
+                        Object[] data = { sls.get(i).getsalesId(), sls.get(i).getsalesCustomerName(),  sls.get(i).getsalesCustomerAddress(), sls.get(i).getsalesDate(), sls.get(i).getsalesBillNo(), sls.get(i).getsalesRate(), sls.get(i).getsalesQuantity(),sls.get(i).getitemName() };
                         dtm.addRow(data);                    
                     }
                     tblSalesList.setModel(dtm);
@@ -452,6 +452,6 @@ private void btnSalesDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GE
     private javax.swing.JTextField txtSalesId;
     private javax.swing.JTextField txtSearchCustomerName;
     // End of variables declaration//GEN-END:variables
-    private SalesOF sale;
-    private SalesBl blsale;
+    private SalesObj sale;
+    private SalesEx blsale;
 }

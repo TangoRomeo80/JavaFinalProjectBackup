@@ -10,21 +10,21 @@
  */
 package inventorymanagement;
 
-import BusinessLayer.UserBl;
-import ObjectFactory.UserOF;
+import Executor.UserEx;
+import Object.UserObj;
 import javax.swing.*;
 
 /**
  *
- * @author chhabi
+ * @author Rahat
  */
 public class UserLogin extends javax.swing.JFrame {
 
     /** Creates new form UserLogin */
     public UserLogin() {
         initComponents();
-        userBl = new UserBl();
-        user = new UserOF();
+        userBl = new UserEx();
+        user = new UserObj();
     }
 
     /** This method is called from within the constructor to
@@ -140,11 +140,11 @@ private void btnUserLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         dboard.setUser(user);
         dboard.setVisible(true);
 //    try{
-//      user = new UserOF();
-//      user.setUser_name(txtUserName.getText());
-//      user.setUser_password( new String(txtUserPassword.getPassword()));
-//      user.setUser_type(cmbUserType.getSelectedItem().toString());
-//      userBl = new UserBl(user);
+//      user = new UserObj();
+//      user.setuserName(txtUserName.getText());
+//      user.setuserPassword( new String(txtUserPassword.getPassword()));
+//      user.setuserType(cmbUserType.getSelectedItem().toString());
+//      userBl = new UserEx(user);
 //      if(userBl.authenticateUser()){
 //        user = userBl.getUser();
 //        setVisible(false);
@@ -211,6 +211,6 @@ private void btnExitUserLoginActionPerformed(java.awt.event.ActionEvent evt) {//
     private javax.swing.JTextField txtUserName;
     private javax.swing.JPasswordField txtUserPassword;
     // End of variables declaration//GEN-END:variables
-    private UserBl userBl;
-    private UserOF user;
+    private UserEx userBl;
+    private UserObj user;
 }

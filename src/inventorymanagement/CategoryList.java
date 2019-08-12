@@ -10,23 +10,23 @@
  */
 package inventorymanagement;
 
-import BusinessLayer.CategoryBl;
-import ObjectFactory.CategoryOF;
+import Executor.CategoryEx;
+import Object.CategoryObj;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author chhabi
+ * @author Rahat
  */
 public class CategoryList extends javax.swing.JInternalFrame {
 
     /** Creates new form CategoryList */
     public CategoryList() {
         initComponents();
-        category = new CategoryOF();
-        blcategory = new CategoryBl();
+        category = new CategoryObj();
+        blcategory = new CategoryEx();
         DefaultTableModel dtm = new DefaultTableModel();
         try{
 
@@ -34,9 +34,9 @@ public class CategoryList extends javax.swing.JInternalFrame {
             dtm.addColumn("Category Name");
             dtm.addColumn("Category Detail");
                         
-            ArrayList<CategoryOF> categorys = blcategory.getcategoryList();
+            ArrayList<CategoryObj> categorys = blcategory.getcategoryList();
             for(int i=0; i<categorys.size(); ++i ){
-              Object[] data = { categorys.get(i).getCat_id(), categorys.get(i).getCat_name(), categorys.get(i).getCat_detail() };
+              Object[] data = { categorys.get(i).getCatId(), categorys.get(i).getCatName(), categorys.get(i).getCatDetail() };
               dtm.addRow(data);
             }
             tblCategoryList.setModel(dtm);
@@ -226,11 +226,11 @@ private void btnEditSelectedActionPerformed(java.awt.event.ActionEvent evt) {//G
 private void btnCategoryUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoryUpdateActionPerformed
 // TODO add your handling code here:
     try{
-       category = new CategoryOF();
-       category.setCat_id(Integer.parseInt(txtCategoryId.getText()));
-       category.setCat_name( new String(txtCategoryName.getText())); 
-       category.setCat_detail( new String(txtCategoryDetail.getText()));
-       blcategory = new CategoryBl(category);
+       category = new CategoryObj();
+       category.setCatId(Integer.parseInt(txtCategoryId.getText()));
+       category.setCatName( new String(txtCategoryName.getText())); 
+       category.setCatDetail( new String(txtCategoryDetail.getText()));
+       blcategory = new CategoryEx(category);
        if(blcategory.updatecategory()){
            JOptionPane.showMessageDialog(this, "Category Updated Successfully", "Operation Successfull", JOptionPane.INFORMATION_MESSAGE);
            this.dispose();
@@ -247,9 +247,9 @@ private void btnCategoryUpdateActionPerformed(java.awt.event.ActionEvent evt) {/
 private void btnCategoryDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoryDeleteActionPerformed
 // TODO add your handling code here:
     try{
-        category = new CategoryOF();
-        category.setCat_id(Integer.parseInt(txtCategoryId.getText()));
-        blcategory = new CategoryBl(category);
+        category = new CategoryObj();
+        category.setCatId(Integer.parseInt(txtCategoryId.getText()));
+        blcategory = new CategoryEx(category);
         if(blcategory.deletecategory()){
             JOptionPane.showMessageDialog(this, "Category Deleted Successfully", "Operation Successfull", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
@@ -265,17 +265,17 @@ private void btnCategoryDeleteActionPerformed(java.awt.event.ActionEvent evt) {/
 private void btnSearchCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchCategoryActionPerformed
 // TODO add your handling code here:
     try{
-            category.setCat_name(txtSearchCategory.getText());
+            category.setCatName(txtSearchCategory.getText());
             DefaultTableModel dtm = new DefaultTableModel();
             dtm.addColumn("Category Id");
             dtm.addColumn("Category Name");
             dtm.addColumn("Category Detail");            
             
-            blcategory = new CategoryBl(category);
-            ArrayList<CategoryOF> categorys = blcategory.searchcategory();
+            blcategory = new CategoryEx(category);
+            ArrayList<CategoryObj> categorys = blcategory.searchcategory();
                 if(categorys.size() > 0){
                     for( int i=0; i<categorys.size(); i++){
-                        Object[] data = { categorys.get(i).getCat_id(), categorys.get(i).getCat_name(), categorys.get(i).getCat_detail() };
+                        Object[] data = { categorys.get(i).getCatId(), categorys.get(i).getCatName(), categorys.get(i).getCatDetail() };
                         dtm.addRow(data);                    
                     }
                     tblCategoryList.setModel(dtm);
@@ -309,6 +309,6 @@ private void btnSearchCategoryActionPerformed(java.awt.event.ActionEvent evt) {/
     private javax.swing.JTextField txtCategoryName;
     private javax.swing.JTextField txtSearchCategory;
     // End of variables declaration//GEN-END:variables
-    private CategoryOF category;
-    private CategoryBl blcategory;
+    private CategoryObj category;
+    private CategoryEx blcategory;
 }

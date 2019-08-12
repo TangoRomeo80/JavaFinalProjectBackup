@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author chabbi
+ * @author Rahat
  */
 public class Validation {
     String validationType;

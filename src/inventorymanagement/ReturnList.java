@@ -10,11 +10,11 @@
  */
 package inventorymanagement;
 
-import BusinessLayer.ItemBl;
-import BusinessLayer.ReturnBl;
-import DatabaseLayer.GlobalConnection;
-import ObjectFactory.ItemOF;
-import ObjectFactory.ReturnOF;
+import Executor.ItemEx;
+import Executor.ReturnEx;
+import Databse.GlobalConnection;
+import Object.ItemObj;
+import Object.ReturnObj;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author chhabi
+ * @author Rahat
  */
 public class ReturnList extends javax.swing.JInternalFrame {
     
@@ -35,19 +35,19 @@ public class ReturnList extends javax.swing.JInternalFrame {
         initComponents();
         
         // item name in combo box
-        ItemBl it = new ItemBl();
+        ItemEx it = new ItemEx();
         try{
-            ArrayList<ItemOF> itm = it.getItemList();
+            ArrayList<ItemObj> itm = it.getItemList();
             for( int i=0; i<itm.size(); ++i){
-                cmbItemName.addItem(itm.get(i).getItem_name());
+                cmbItemName.addItem(itm.get(i).getitemName());
             }
         
         }catch(Exception ex){
             JOptionPane.showMessageDialog(this, ex);
         }
         
-        rturn = new ReturnOF();
-        blRturn = new ReturnBl();
+        rturn = new ReturnObj();
+        blRturn = new ReturnEx();
         DefaultTableModel dtm = new DefaultTableModel();
         
         try{
@@ -57,9 +57,9 @@ public class ReturnList extends javax.swing.JInternalFrame {
             dtm.addColumn("Return Date");
             dtm.addColumn("Item Name");
             
-            ArrayList<ReturnOF> rturn = blRturn.getRturnList();
+            ArrayList<ReturnObj> rturn = blRturn.getRturnList();
             for(int i=0; i<rturn.size(); ++i ){
-              Object[] data = { rturn.get(i).getReturn_id(), rturn.get(i).getReturn_name() ,rturn.get(i).getReturn_quantity(), rturn.get(i).getReturn_date(), rturn.get(i).getItem_name() };
+              Object[] data = { rturn.get(i).getreturnId(), rturn.get(i).getreturnName() ,rturn.get(i).getreturnQuantity(), rturn.get(i).getreturnDate(), rturn.get(i).getitemName() };
               dtm.addRow(data);
             }
             tblReturnList.setModel(dtm);
@@ -294,18 +294,18 @@ private void btnSelectedReturnActionPerformed(java.awt.event.ActionEvent evt) {/
 private void btnReturnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnUpdateActionPerformed
 // TODO add your handling code here:
     try {
-       rturn = new ReturnOF();
-       rturn.setReturn_id(Integer.parseInt(txtReturnId.getText()));
-       rturn.setReturn_name(txtReturnName.getText());
-       rturn.setReturn_quantity( Integer.parseInt(txtItemReturnQuantity.getText())); 
+       rturn = new ReturnObj();
+       rturn.setreturnId(Integer.parseInt(txtReturnId.getText()));
+       rturn.setreturnName(txtReturnName.getText());
+       rturn.setreturnQuantity( Integer.parseInt(txtItemReturnQuantity.getText())); 
        
        Date dtt = txtItemReturnDate.getDate();
        SimpleDateFormat ftt = new SimpleDateFormat("yyyy-MM-dd");
-       rturn.setReturn_date(ftt.format(dtt).toString());
+       rturn.setreturnDate(ftt.format(dtt).toString());
        
-       rturn.setItem_name(cmbItemName.getSelectedItem().toString());
+       rturn.setitemName(cmbItemName.getSelectedItem().toString());
        
-       blRturn = new ReturnBl(rturn);   
+       blRturn = new ReturnEx(rturn);   
        if(blRturn.updateRturn()){
            JOptionPane.showMessageDialog(this, "Return Item Updated Successfully", "Operation Successfull", JOptionPane.INFORMATION_MESSAGE);
            this.dispose();
@@ -324,9 +324,9 @@ private void btnReturnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//G
 private void btnReturnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnDeleteActionPerformed
 // TODO add your handling code here:
     try{
-        rturn = new ReturnOF();
-        rturn.setReturn_id(Integer.parseInt(txtReturnId.getText()));
-        blRturn = new ReturnBl(rturn);
+        rturn = new ReturnObj();
+        rturn.setreturnId(Integer.parseInt(txtReturnId.getText()));
+        blRturn = new ReturnEx(rturn);
         if(blRturn.deleteRturn()){
             JOptionPane.showMessageDialog(this, "Return Item Deleted Successfully", "Operation Successfull", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
@@ -342,7 +342,7 @@ private void btnReturnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//G
 private void btnReturnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnSearchActionPerformed
 // TODO add your handling code here:
         try{
-            rturn.setReturn_name(txtReturnSearch.getText().toString());
+            rturn.setreturnName(txtReturnSearch.getText().toString());
             DefaultTableModel dtm = new DefaultTableModel();
             dtm.addColumn("Return Id");
             dtm.addColumn("Return Name");
@@ -350,11 +350,11 @@ private void btnReturnSearchActionPerformed(java.awt.event.ActionEvent evt) {//G
             dtm.addColumn("Return Date");
             dtm.addColumn("Item Name");
            
-            blRturn = new ReturnBl(rturn);
-            ArrayList<ReturnOF>rturns = blRturn.searchRturn();
+            blRturn = new ReturnEx(rturn);
+            ArrayList<ReturnObj>rturns = blRturn.searchRturn();
                 if(rturns.size() > 0){
                     for( int i=0; i<rturns.size(); i++){
-                        Object[] data = { rturns.get(i).getReturn_id(), rturns.get(i).getReturn_name() ,rturns.get(i).getReturn_quantity(),rturns.get(i).getReturn_date(),rturns.get(i).getItem_name(),};
+                        Object[] data = { rturns.get(i).getreturnId(), rturns.get(i).getreturnName() ,rturns.get(i).getreturnQuantity(),rturns.get(i).getreturnDate(),rturns.get(i).getitemName(),};
                         dtm.addRow(data);                    
                     }
                     tblReturnList.setModel(dtm);
@@ -386,6 +386,6 @@ private void btnReturnSearchActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JTextField txtReturnName;
     private javax.swing.JTextField txtReturnSearch;
     // End of variables declaration//GEN-END:variables
-    private ReturnOF rturn;
-    private ReturnBl blRturn;
+    private ReturnObj rturn;
+    private ReturnEx blRturn;
 }

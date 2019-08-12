@@ -10,10 +10,10 @@
  */
 package inventorymanagement;
 
-import BusinessLayer.DamageBl;
-import BusinessLayer.ItemBl;
-import ObjectFactory.DamageOF;
-import ObjectFactory.ItemOF;
+import Executor.DamageEx;
+import Executor.ItemEx;
+import Object.DamageObj;
+import Object.ItemObj;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author chhabi
+ * @author Rahat
  */
 public class DamageList extends javax.swing.JInternalFrame {
 
@@ -31,19 +31,19 @@ public class DamageList extends javax.swing.JInternalFrame {
         initComponents();
         
         // item name in combo box
-        ItemBl it = new ItemBl();
+        ItemEx it = new ItemEx();
         try{
-            ArrayList<ItemOF> itm = it.getItemList();
+            ArrayList<ItemObj> itm = it.getItemList();
             for( int i=0; i<itm.size(); ++i){
-                cmbItemName.addItem(itm.get(i).getItem_name());
+                cmbItemName.addItem(itm.get(i).getitemName());
             }
         
         }catch(Exception ex){
             JOptionPane.showMessageDialog(this, ex);
         }
         
-        damage = new DamageOF();
-        bldamage = new DamageBl();
+        damage = new DamageObj();
+        bldamage = new DamageEx();
         DefaultTableModel dtm = new DefaultTableModel();
         try{
 
@@ -54,9 +54,9 @@ public class DamageList extends javax.swing.JInternalFrame {
             dtm.addColumn("Damage Detail");
             dtm.addColumn("Item Name");
                         
-            ArrayList<DamageOF> damages = bldamage.getdamageList();
+            ArrayList<DamageObj> damages = bldamage.getdamageList();
             for(int i=0; i<damages.size(); ++i ){
-              Object[] data = { damages.get(i).getDamage_id(), damages.get(i).getDamage_name(), damages.get(i).getDamage_quantity(), damages.get(i).getDamage_date(), damages.get(i).getDamage_detail(), damages.get(i).getItem_name() };
+              Object[] data = { damages.get(i).getDamageId(), damages.get(i).getDamageName(), damages.get(i).getDamageQuantity(), damages.get(i).getDamageDate(), damages.get(i).getDamageDetail(), damages.get(i).getitemName() };
               dtm.addRow(data);
             }
             tblDamageList.setModel(dtm);
@@ -92,7 +92,7 @@ public class DamageList extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         txtDamageId = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        txtDamageDetail = new javax.swing.JTextArea();
+        txtdamageId = new javax.swing.JTextArea();
         txtDamageName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         btnDamageUpdate = new javax.swing.JButton();
@@ -183,9 +183,9 @@ public class DamageList extends javax.swing.JInternalFrame {
 
         txtDamageId.setEditable(false);
 
-        txtDamageDetail.setColumns(20);
-        txtDamageDetail.setRows(5);
-        jScrollPane2.setViewportView(txtDamageDetail);
+        txtdamageId.setColumns(20);
+        txtdamageId.setRows(5);
+        jScrollPane2.setViewportView(txtdamageId);
 
         jLabel3.setText("Damage Id : ");
 
@@ -328,7 +328,7 @@ public class DamageList extends javax.swing.JInternalFrame {
 private void btnSeachDamageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeachDamageActionPerformed
 // TODO add your handling code here:
     try{
-        damage.setDamage_name(txtSearchDamage.getText());
+        damage.setDamageName(txtSearchDamage.getText());
         DefaultTableModel dtm = new DefaultTableModel();
         dtm.addColumn("Damage Id");
         dtm.addColumn("Damage Name");
@@ -337,11 +337,11 @@ private void btnSeachDamageActionPerformed(java.awt.event.ActionEvent evt) {//GE
         dtm.addColumn("Damage Detail");    
         dtm.addColumn("Item Name");
 
-        bldamage = new DamageBl(damage);
-        ArrayList<DamageOF> damages = bldamage.searchdamage();
+        bldamage = new DamageEx(damage);
+        ArrayList<DamageObj> damages = bldamage.searchdamage();
             if(damages.size() > 0){
                 for( int i=0; i<damages.size(); i++){
-                    Object[] data = { damages.get(i).getDamage_id(), damages.get(i).getDamage_name(), damages.get(i).getDamage_quantity(), damages.get(i).getDamage_date(), damages.get(i).getDamage_detail(), damages.get(i).getItem_name()};
+                    Object[] data = { damages.get(i).getDamageId(), damages.get(i).getDamageName(), damages.get(i).getDamageQuantity(), damages.get(i).getDamageDate(), damages.get(i).getDamageDetail(), damages.get(i).getitemName()};
                     dtm.addRow(data);                    
                 }
                 tblDamageList.setModel(dtm);
@@ -375,7 +375,7 @@ private void btnEditSelectedActionPerformed(java.awt.event.ActionEvent evt) {//G
         SimpleDateFormat oFormat = new SimpleDateFormat("yyyy-MM-dd");
         txtDamageDate.setDate((Date)oFormat.parse(dDate));
         
-        txtDamageDetail.setText(dDetail);
+        txtdamageId.setText(dDetail);
         cmbItemName.setSelectedItem(itemName);
     
     }catch(Exception ex){
@@ -387,19 +387,19 @@ private void btnEditSelectedActionPerformed(java.awt.event.ActionEvent evt) {//G
 private void btnDamageUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDamageUpdateActionPerformed
 // TODO add your handling code here:
     try{
-       damage = new DamageOF();
-       damage.setDamage_id(Integer.parseInt(txtDamageId.getText()));
-       damage.setDamage_name( new String(txtDamageName.getText())); 
-       damage.setDamage_quantity(Integer.parseInt(txtDamageQuantity.getText()));
+       damage = new DamageObj();
+       damage.setDamageId(Integer.parseInt(txtDamageId.getText()));
+       damage.setDamageName( new String(txtDamageName.getText())); 
+       damage.setDamageQuantity(Integer.parseInt(txtDamageQuantity.getText()));
        
        Date dtt = txtDamageDate.getDate();
        SimpleDateFormat ftt = new SimpleDateFormat("yyyy-MM-dd");
-       damage.setDamage_date(ftt.format(dtt).toString());
+       damage.setDamageDate(ftt.format(dtt).toString());
        
-       damage.setDamage_detail( new String(txtDamageDetail.getText()));
-       damage.setItem_name(cmbItemName.getSelectedItem().toString());
+       damage.setDamageDetail( new String(txtdamageId.getText()));
+       damage.setitemName(cmbItemName.getSelectedItem().toString());
        
-       bldamage = new DamageBl(damage);
+       bldamage = new DamageEx(damage);
        if(bldamage.updatedamage()){
            JOptionPane.showMessageDialog(this, "Damage Updated Successfully", "Operation Successfull", JOptionPane.INFORMATION_MESSAGE);
            this.dispose();
@@ -416,9 +416,9 @@ private void btnDamageUpdateActionPerformed(java.awt.event.ActionEvent evt) {//G
 private void btnDamageDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDamageDeleteActionPerformed
 // TODO add your handling code here:
     try{
-        damage = new DamageOF();
-        damage.setDamage_id(Integer.parseInt(txtDamageId.getText()));
-        bldamage = new DamageBl(damage);
+        damage = new DamageObj();
+        damage.setDamageId(Integer.parseInt(txtDamageId.getText()));
+        bldamage = new DamageEx(damage);
         if(bldamage.deletedamage()){
             JOptionPane.showMessageDialog(this, "Damage Deleted Successfully", "Operation Successfull", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
@@ -452,12 +452,12 @@ private void btnDamageDeleteActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblDamageList;
     private com.toedter.calendar.JDateChooser txtDamageDate;
-    private javax.swing.JTextArea txtDamageDetail;
+    private javax.swing.JTextArea txtdamageId;
     private javax.swing.JTextField txtDamageId;
     private javax.swing.JTextField txtDamageName;
     private javax.swing.JTextField txtDamageQuantity;
     private javax.swing.JTextField txtSearchDamage;
     // End of variables declaration//GEN-END:variables
-    private DamageOF damage;
-    private DamageBl bldamage;
+    private DamageObj damage;
+    private DamageEx bldamage;
 }
