@@ -309,7 +309,7 @@ private void btnReturnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//G
        if(blRturn.updateRturn()){
            JOptionPane.showMessageDialog(this, "Return Item Updated Successfully", "Operation Successfull", JOptionPane.INFORMATION_MESSAGE);
            this.dispose();
-           DashBoard.dashBoard.add( new CategoryList());
+           DashBoardAdm.dashBoard.add( new CategoryList());
            
             }else{
                 JOptionPane.showMessageDialog(this, "Unable to Update Return Item", "Error Occured", JOptionPane.ERROR_MESSAGE);
@@ -330,7 +330,7 @@ private void btnReturnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//G
         if(blRturn.deleteRturn()){
             JOptionPane.showMessageDialog(this, "Return Item Deleted Successfully", "Operation Successfull", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
-            DashBoard.dashBoard.add( new CategoryList());
+            DashBoardAdm.dashBoard.add( new CategoryList());
         }else{
             JOptionPane.showMessageDialog(this, "Unabale to Delete Return Item", "Error Occured", JOptionPane.ERROR_MESSAGE );
         }

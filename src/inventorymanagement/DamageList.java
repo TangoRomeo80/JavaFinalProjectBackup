@@ -403,7 +403,7 @@ private void btnDamageUpdateActionPerformed(java.awt.event.ActionEvent evt) {//G
        if(bldamage.updatedamage()){
            JOptionPane.showMessageDialog(this, "Damage Updated Successfully", "Operation Successfull", JOptionPane.INFORMATION_MESSAGE);
            this.dispose();
-           DashBoard.dashBoard.add( new CategoryList());
+           DashBoardAdm.dashBoard.add( new CategoryList());
            
        }else{
            JOptionPane.showMessageDialog(this, "Unable to Update Damage", "Error Occured", JOptionPane.ERROR_MESSAGE);
@@ -422,7 +422,7 @@ private void btnDamageDeleteActionPerformed(java.awt.event.ActionEvent evt) {//G
         if(bldamage.deletedamage()){
             JOptionPane.showMessageDialog(this, "Damage Deleted Successfully", "Operation Successfull", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
-            DashBoard.dashBoard.add( new CategoryList());
+            DashBoardAdm.dashBoard.add( new CategoryList());
         }else{
             JOptionPane.showMessageDialog(this, "Unabale to Delete Damage", "Error Occured", JOptionPane.ERROR_MESSAGE );
         }

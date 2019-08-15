@@ -1,13 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * SalesList.java
- *
- * Created on Jun 27, 2015, 12:26:17 AM
- */
 package inventorymanagement;
 
 import Executor.ItemEx;
@@ -24,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Rahat
+ * sales list form
  */
 public class SalesList extends javax.swing.JInternalFrame {
     
@@ -361,7 +352,7 @@ private void btnSalesUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GE
        if(blsale.updateSales()){
            JOptionPane.showMessageDialog(this, "Sales Updated Successfully", "Operation Successfull", JOptionPane.INFORMATION_MESSAGE);
            this.dispose();
-           DashBoard.dashBoard.add( new CategoryList());
+           DashBoardAdm.dashBoard.add( new CategoryList());
            
             }else{
                 JOptionPane.showMessageDialog(this, "Unable to Update Sales", "Error Occured", JOptionPane.ERROR_MESSAGE);
@@ -380,9 +371,9 @@ private void btnSalesDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GE
         sale.setsalesId(Integer.parseInt(txtSalesId.getText()));
         blsale = new SalesEx(sale);
         if(blsale.deleteSales()){
-            JOptionPane.showMessageDialog(null, "Sales Item Deleted Successfully", "Operation Successfull", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Sales Item Deleted Successfully", "Operation Successfull", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
-            DashBoard.dashBoard.add( new CategoryList());
+            DashBoardAdm.dashBoard.add( new CategoryList());
         }else{
             JOptionPane.showMessageDialog(this, "Unabale to Delete Sales Item", "Error Occured", JOptionPane.ERROR_MESSAGE );
         }

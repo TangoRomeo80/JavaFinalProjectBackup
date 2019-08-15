@@ -1,13 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * ItemRegister.java
- *
- * Created on Jun 27, 2015, 11:14:49 PM
- */
 package inventorymanagement;
 
 import Executor.CategoryEx;
@@ -24,6 +14,7 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author Rahat
+ * item list and update form
  */
 public class ItemRegister extends javax.swing.JInternalFrame {
 

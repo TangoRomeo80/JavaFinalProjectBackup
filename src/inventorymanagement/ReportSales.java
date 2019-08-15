@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package inventorymanagement;
 
 import Executor.SalesEx;
@@ -17,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Rahat
+ * sales report form
  */
 public class ReportSales extends javax.swing.JInternalFrame {
     GlobalConnection db = new GlobalConnection();
@@ -65,7 +61,6 @@ public class ReportSales extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblViewSales = new javax.swing.JTable();
-        btnPrintSales = new javax.swing.JButton();
         btnCancelSales = new javax.swing.JButton();
 
         setClosable(true);
@@ -89,13 +84,6 @@ public class ReportSales extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tblViewSales);
 
-        btnPrintSales.setText("Save & Print");
-        btnPrintSales.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPrintSalesActionPerformed(evt);
-            }
-        });
-
         btnCancelSales.setText("Cancel");
         btnCancelSales.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,14 +101,12 @@ public class ReportSales extends javax.swing.JInternalFrame {
                 .addGap(197, 197, 197))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(195, 195, 195)
-                .addComponent(btnPrintSales, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61)
+                .addGap(268, 268, 268)
                 .addComponent(btnCancelSales, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(183, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,11 +115,9 @@ public class ReportSales extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnCancelSales, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
-                    .addComponent(btnPrintSales, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnCancelSales, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(82, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -155,18 +139,6 @@ public class ReportSales extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnPrintSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintSalesActionPerformed
-        // TODO add your handling code here:
-        MessageFormat header = new MessageFormat("Inventory Management System ");
-        MessageFormat footer = new MessageFormat("Page{0,number,integer}");
-
-        try{
-            tblViewSales.print(JTable.PrintMode.NORMAL, header, footer);
-        }catch(java.awt.print.PrinterException e){
-            System.err.format("Can not print the page", e.getMessage());
-        }
-    }//GEN-LAST:event_btnPrintSalesActionPerformed
-
     private void btnCancelSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelSalesActionPerformed
         // TODO add your handling code here:
         this.dispose();
@@ -175,7 +147,6 @@ public class ReportSales extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelSales;
-    private javax.swing.JButton btnPrintSales;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

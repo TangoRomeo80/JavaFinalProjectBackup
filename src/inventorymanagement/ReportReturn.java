@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package inventorymanagement;
 
 import Executor.ReturnEx;
@@ -16,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Rahat
+ * return report form
  */
 public class ReportReturn extends javax.swing.JInternalFrame {
 
@@ -61,7 +57,6 @@ public class ReportReturn extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblViewReturn = new javax.swing.JTable();
-        btnPrintReturn = new javax.swing.JButton();
         btnCancelReturn = new javax.swing.JButton();
 
         setClosable(true);
@@ -85,13 +80,6 @@ public class ReportReturn extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tblViewReturn);
 
-        btnPrintReturn.setText("Save & Print");
-        btnPrintReturn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPrintReturnActionPerformed(evt);
-            }
-        });
-
         btnCancelReturn.setText("Cancel");
         btnCancelReturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,9 +101,7 @@ public class ReportReturn extends javax.swing.JInternalFrame {
                         .addGap(26, 26, 26)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(144, 144, 144)
-                        .addComponent(btnPrintReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(51, 51, 51)
+                        .addGap(198, 198, 198)
                         .addComponent(btnCancelReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
@@ -127,9 +113,7 @@ public class ReportReturn extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPrintReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnCancelReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
@@ -153,19 +137,6 @@ public class ReportReturn extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnPrintReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintReturnActionPerformed
-        // TODO add your handling code here:
-        
-        MessageFormat header = new MessageFormat("Inventory Management System ");
-        MessageFormat footer = new MessageFormat("Page{0,number,integer}");
-
-        try{
-            tblViewReturn.print(JTable.PrintMode.NORMAL, header, footer);
-        }catch(java.awt.print.PrinterException e){
-            System.err.format("Can not print the page", e.getMessage());
-        }
-    }//GEN-LAST:event_btnPrintReturnActionPerformed
-
     private void btnCancelReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelReturnActionPerformed
         // TODO add your handling code here:
         this.dispose();
@@ -174,7 +145,6 @@ public class ReportReturn extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelReturn;
-    private javax.swing.JButton btnPrintReturn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

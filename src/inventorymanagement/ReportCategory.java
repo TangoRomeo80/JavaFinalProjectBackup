@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package inventorymanagement;
 
 import Executor.CategoryEx;
@@ -17,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Rahat
+ * category report form
  */
 public class ReportCategory extends javax.swing.JInternalFrame {
 
@@ -59,13 +55,13 @@ public class ReportCategory extends javax.swing.JInternalFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tblViewCategory = new javax.swing.JTable();
-        btnPrintCategory = new javax.swing.JButton();
         btnCancelCategory = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
+        setPreferredSize(new java.awt.Dimension(1250, 510));
 
         tblViewCategory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -79,13 +75,6 @@ public class ReportCategory extends javax.swing.JInternalFrame {
             }
         ));
         jScrollPane1.setViewportView(tblViewCategory);
-
-        btnPrintCategory.setText("Save & Print");
-        btnPrintCategory.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPrintCategoryActionPerformed(evt);
-            }
-        });
 
         btnCancelCategory.setText("Cancel");
         btnCancelCategory.addActionListener(new java.awt.event.ActionListener() {
@@ -103,51 +92,23 @@ public class ReportCategory extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(338, 338, 338)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnPrintCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(124, 124, 124)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(544, 544, 544)
                         .addComponent(btnCancelCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(279, Short.MAX_VALUE))
+                .addContainerGap(374, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCancelCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPrintCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(395, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnCancelCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnPrintCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintCategoryActionPerformed
-        // TODO add your handling code here:
-        
-        MessageFormat header = new MessageFormat("Inventory Management System ");
-        MessageFormat footer = new MessageFormat("Page{0,number,integer}");
-        
-        try {
-          MessageFormat headerFormat = new MessageFormat("Page {0}");
-          MessageFormat footerFormat = new MessageFormat("- {0} -");
-          tblViewCategory.print(JTable.PrintMode.FIT_WIDTH, headerFormat, footerFormat);
-        } catch (PrinterException pe) {
-          System.err.println("Error printing: " + pe.getMessage());
-        }
-        
-//        try{             
-//            //Boolean view = tblViewCategory.print(JTable.PrintMode.NORMAL, header, footer);
-//            //JOptionPane.tblViewCategory.print(JTable.PrintMode.NORMAL, header, footer);
-//            JOptionPane.showMessageDialog(this, tblViewCategory);
-//            //tblViewCategory.print(JTable.PrintMode.NORMAL, header, footer);
-//        }catch(Exception e){
-//            System.err.format("Can not print the page", e.getMessage());
-//        }
-    }//GEN-LAST:event_btnPrintCategoryActionPerformed
 
     private void btnCancelCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelCategoryActionPerformed
         // TODO add your handling code here:
@@ -157,7 +118,6 @@ public class ReportCategory extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelCategory;
-    private javax.swing.JButton btnPrintCategory;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblViewCategory;
     // End of variables declaration//GEN-END:variables

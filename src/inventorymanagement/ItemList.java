@@ -402,7 +402,7 @@ private void btnUpdateItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN
        if(blitem.updateItem()){
            JOptionPane.showMessageDialog(this, "Item Updated Successfully", "Operation Successfull", JOptionPane.INFORMATION_MESSAGE);
            this.dispose();
-           DashBoard.dashBoard.add( new CategoryList());
+           DashBoardAdm.dashBoard.add( new CategoryList());
            
             }else{
                 JOptionPane.showMessageDialog(this, "Unable to Update Item", "Error Occured", JOptionPane.ERROR_MESSAGE);

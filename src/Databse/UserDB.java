@@ -126,12 +126,11 @@ public class UserDB extends GlobalConnection {
       this.connect();
       Statement s = this.conn.createStatement();
       ResultSet rs;
-      rs = s.executeQuery("SELECT userPassword FROM tbl_user WHERE userName = '"+ user.getuserName()+"' and userType= '"+user.getuserType()+"' ");
+      rs = s.executeQuery("SELECT userPassword FROM tbl_user WHERE userName = '"+ user.getuserName()+"' ");
       while(rs.next()){
         if(rs.getString("userPassword").equals(user.getuserPassword()))
           return true;
-        if(rs.getString("userType").equals(user.getuserType()))
-          return true;
+
       }
       this.disconnect();
      }catch(Exception ex){

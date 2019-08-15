@@ -46,11 +46,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuUpdateUserActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuReportUser">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Report"/>
-              </Properties>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Change Password"/>
@@ -106,7 +101,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuReturnInsert">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Return Item"/>
+                <Property name="text" type="java.lang.String" value="Returned Item"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuReturnInsertActionPerformed"/>
@@ -114,7 +109,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuDamageInsert">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Damage Item"/>
+                <Property name="text" type="java.lang.String" value="Damaged Item"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuDamageInsertActionPerformed"/>
@@ -164,7 +159,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuReturnUpdate">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Return Item"/>
+                <Property name="text" type="java.lang.String" value="Returned Item"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuReturnUpdateActionPerformed"/>
@@ -172,28 +167,10 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuDamageUpdate">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Damage Item"/>
+                <Property name="text" type="java.lang.String" value="Damaged Item"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuDamageUpdateActionPerformed"/>
-              </Events>
-            </MenuItem>
-          </SubComponents>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="menuBackup">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Back Up"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="12" style="1"/>
-            </Property>
-          </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="menuDbBackup">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Backup Database"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuDbBackupActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -316,12 +293,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="dashBoard" min="-2" pref="1586" max="-2" attributes="0"/>
+          <Component id="dashBoard" pref="1366" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="dashBoard" alignment="0" pref="632" max="32767" attributes="0"/>
+          <Component id="dashBoard" alignment="0" pref="768" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -331,6 +308,8 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="99" red="33" type="rgb"/>
         </Property>
+        <Property name="alignmentX" type="float" value="0.0"/>
+        <Property name="alignmentY" type="float" value="0.0"/>
         <Property name="autoscrolls" type="boolean" value="true"/>
       </Properties>
       <AuxValues>

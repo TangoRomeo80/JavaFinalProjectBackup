@@ -1,13 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * CategoryList.java
- *
- * Created on Jun 23, 2015, 11:57:02 PM
- */
 package inventorymanagement;
 
 import Executor.CategoryEx;
@@ -19,6 +9,7 @@ import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Rahat
+ * category list display
  */
 public class CategoryList extends javax.swing.JInternalFrame {
 
@@ -79,6 +70,7 @@ public class CategoryList extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
         setTitle("Update Category List");
+        setPreferredSize(new java.awt.Dimension(870, 575));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Category List ");
@@ -96,7 +88,7 @@ public class CategoryList extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tblCategoryList);
 
-        btnEditSelected.setText("Edit Selected Category");
+        btnEditSelected.setText("Edit/delete Selected Category");
         btnEditSelected.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditSelectedActionPerformed(evt);
@@ -176,12 +168,12 @@ public class CategoryList extends javax.swing.JInternalFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(txtCategoryId, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtCategoryName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)))))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addContainerGap(40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnEditSelected, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -209,8 +201,7 @@ public class CategoryList extends javax.swing.JInternalFrame {
                         .addComponent(btnCategoryUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnCategoryDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(15, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         pack();
@@ -234,7 +225,7 @@ private void btnCategoryUpdateActionPerformed(java.awt.event.ActionEvent evt) {/
        if(blcategory.updatecategory()){
            JOptionPane.showMessageDialog(this, "Category Updated Successfully", "Operation Successfull", JOptionPane.INFORMATION_MESSAGE);
            this.dispose();
-           DashBoard.dashBoard.add( new CategoryList());
+           DashBoardAdm.dashBoard.add( new CategoryList());
            
        }else{
            JOptionPane.showMessageDialog(this, "Unable to Update Category", "Error Occured", JOptionPane.ERROR_MESSAGE);
@@ -253,7 +244,7 @@ private void btnCategoryDeleteActionPerformed(java.awt.event.ActionEvent evt) {/
         if(blcategory.deletecategory()){
             JOptionPane.showMessageDialog(this, "Category Deleted Successfully", "Operation Successfull", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
-            DashBoard.dashBoard.add( new CategoryList());
+            DashBoardAdm.dashBoard.add( new CategoryList());
         }else{
             JOptionPane.showMessageDialog(this, "Unabale to Delete Category", "Error Occured", JOptionPane.ERROR_MESSAGE );
         }

@@ -1,13 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * SalesRegister.java
- *
- * Created on Jun 26, 2015, 11:29:20 PM
- */
 package inventorymanagement;
 
 import Executor.ItemEx;
@@ -22,6 +12,7 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author Rahat
+ * sales update and list form
  */
 public class SalesRegister extends javax.swing.JInternalFrame {
 
@@ -231,8 +222,8 @@ private void btnSalesRegisterActionPerformed(java.awt.event.ActionEvent evt) {//
         sales.setsalesCustomerAddress(txtSaleCustomerAddress.getText());
 
         Date sd = txtSalesDate.getDate();
-        SimpleDateFormat sale_date =new SimpleDateFormat("yyyy-MM-dd");
-        sales.setsalesDate(sale_date.format(sd).toString());
+        SimpleDateFormat saleDate =new SimpleDateFormat("yyyy-MM-dd");
+        sales.setsalesDate(saleDate.format(sd).toString());
         
         sales.setsalesBillNo(Integer.parseInt(txtBillNo.getText()));
         sales.setsalesRate(Integer.parseInt(txtSalesRate.getText()));

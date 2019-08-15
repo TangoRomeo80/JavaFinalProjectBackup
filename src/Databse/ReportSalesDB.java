@@ -35,9 +35,9 @@ public class ReportSalesDB extends GlobalConnection{
         try{
           this.connect();
           Statement s = this.conn.createStatement();
-          ResultSet rs = s.executeQuery("SELECT s.*, i.itemName FROM tbl_item i INNER JOIN tbl_sales s ON i.itemId = s.itemId ORDER BY s.sale_id");
+          ResultSet rs = s.executeQuery("SELECT s.*, i.itemName FROM tbl_item i INNER JOIN tbl_sales s ON i.itemId = s.itemId ORDER BY s.saleId");
           while(rs.next()){        
-            sales = new SalesObj(rs.getInt("sale_id"), rs.getString("sale_customer_name"), rs.getString("sale_customer_address"), rs.getString("sale_date"), rs.getInt("sale_bill_no"), rs.getInt("sale_rate"), rs.getInt("sale_quantity"), rs.getInt("itemId"));
+            sales = new SalesObj(rs.getInt("saleId"), rs.getString("saleCustomerName"), rs.getString("saleCustomerAddress"), rs.getString("saleDate"), rs.getInt("saleBillNo"), rs.getInt("saleRate"), rs.getInt("saleQuantity"), rs.getInt("itemId"));
             sales.setitemName(rs.getString("itemName"));
             saless.add(sales);
           }

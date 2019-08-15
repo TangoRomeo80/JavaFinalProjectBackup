@@ -1,13 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * DashBoard.java
- *
- * Created on Jun 22, 2015, 11:52:19 PM
- */
 package inventorymanagement;
 
 import Object.UserObj;
@@ -15,12 +5,13 @@ import Object.UserObj;
 /**
  *
  * @author Rahat
+ * main dashboard
  */
-public class DashBoard extends javax.swing.JFrame {
+public class DashBoardAdm extends javax.swing.JFrame {
      private UserObj user;
      
     /** Creates new form DashBoard */
-    public DashBoard() {
+    public DashBoardAdm() {
         initComponents();
         this.user = user;
     }
@@ -31,10 +22,11 @@ public class DashBoard extends javax.swing.JFrame {
 
     public void setUser(UserObj user) {
         this.user = user;
-        String a = "Guest"; // Guest is from dropdown of Combobox
+        String a = "Employee"; // Guest is from dropdown of Combobox
         
         if(this.user.getuserType().equals(a)){
             menuUsers.hide();  // Hide the menuBackup
+            menuReport.hide();
         }
     }
     /** This method is called from within the constructor to
@@ -51,7 +43,6 @@ public class DashBoard extends javax.swing.JFrame {
         menuUsers = new javax.swing.JMenu();
         menuInsertUser = new javax.swing.JMenuItem();
         menuUpdateUser = new javax.swing.JMenuItem();
-        menuReportUser = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         menuInsertSupplier = new javax.swing.JMenu();
         menuInsertCategory = new javax.swing.JMenuItem();
@@ -67,8 +58,6 @@ public class DashBoard extends javax.swing.JFrame {
         menuSalesUpdate = new javax.swing.JMenuItem();
         menuReturnUpdate = new javax.swing.JMenuItem();
         menuDamageUpdate = new javax.swing.JMenuItem();
-        menuBackup = new javax.swing.JMenu();
-        menuDbBackup = new javax.swing.JMenuItem();
         menuReport = new javax.swing.JMenu();
         menuReportCategory = new javax.swing.JMenuItem();
         menuReportSupplier = new javax.swing.JMenuItem();
@@ -85,6 +74,8 @@ public class DashBoard extends javax.swing.JFrame {
         setAlwaysOnTop(true);
 
         dashBoard.setBackground(new java.awt.Color(51, 153, 255));
+        dashBoard.setAlignmentX(0.0F);
+        dashBoard.setAlignmentY(0.0F);
         dashBoard.setAutoscrolls(true);
 
         jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
@@ -112,9 +103,6 @@ public class DashBoard extends javax.swing.JFrame {
             }
         });
         menuUsers.add(menuUpdateUser);
-
-        menuReportUser.setText("Report");
-        menuUsers.add(menuReportUser);
 
         jMenuItem3.setText("Change Password");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -166,7 +154,7 @@ public class DashBoard extends javax.swing.JFrame {
         });
         menuInsertSupplier.add(menuSalesInsert);
 
-        menuReturnInsert.setText("Return Item");
+        menuReturnInsert.setText("Returned Item");
         menuReturnInsert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuReturnInsertActionPerformed(evt);
@@ -174,7 +162,7 @@ public class DashBoard extends javax.swing.JFrame {
         });
         menuInsertSupplier.add(menuReturnInsert);
 
-        menuDamageInsert.setText("Damage Item");
+        menuDamageInsert.setText("Damaged Item");
         menuDamageInsert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuDamageInsertActionPerformed(evt);
@@ -219,7 +207,7 @@ public class DashBoard extends javax.swing.JFrame {
         });
         menuUpdate.add(menuSalesUpdate);
 
-        menuReturnUpdate.setText("Return Item");
+        menuReturnUpdate.setText("Returned Item");
         menuReturnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuReturnUpdateActionPerformed(evt);
@@ -227,7 +215,7 @@ public class DashBoard extends javax.swing.JFrame {
         });
         menuUpdate.add(menuReturnUpdate);
 
-        menuDamageUpdate.setText("Damage Item");
+        menuDamageUpdate.setText("Damaged Item");
         menuDamageUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuDamageUpdateActionPerformed(evt);
@@ -236,19 +224,6 @@ public class DashBoard extends javax.swing.JFrame {
         menuUpdate.add(menuDamageUpdate);
 
         jMenuBar1.add(menuUpdate);
-
-        menuBackup.setText("Back Up");
-        menuBackup.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-
-        menuDbBackup.setText("Backup Database");
-        menuDbBackup.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuDbBackupActionPerformed(evt);
-            }
-        });
-        menuBackup.add(menuDbBackup);
-
-        jMenuBar1.add(menuBackup);
 
         menuReport.setText("Report");
         menuReport.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -336,69 +311,69 @@ public class DashBoard extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(dashBoard, javax.swing.GroupLayout.PREFERRED_SIZE, 1586, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(dashBoard, javax.swing.GroupLayout.DEFAULT_SIZE, 1366, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(dashBoard, javax.swing.GroupLayout.DEFAULT_SIZE, 632, Short.MAX_VALUE)
+            .addComponent(dashBoard, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
 private void menuInsertUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInsertUserActionPerformed
-// TODO add your handling code here:
-        UserRegister userReg = new UserRegister();
-        dashBoard.removeAll();
-        dashBoard.repaint();
-        dashBoard.add(userReg);
-        userReg.setVisible(true); 
+    //displaying the user register form
+    UserRegister userReg = new UserRegister();
+    dashBoard.removeAll();
+    dashBoard.repaint();
+    dashBoard.add(userReg);
+    userReg.setVisible(true); 
 }//GEN-LAST:event_menuInsertUserActionPerformed
 
 private void menuLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLogOutActionPerformed
-// TODO add your handling code here:
-        System.exit(0);
+    
+    System.exit(0);
 }//GEN-LAST:event_menuLogOutActionPerformed
 
 private void menuUpdateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuUpdateUserActionPerformed
-// TODO add your handling code here:
-        UserList userList = new UserList();
-        dashBoard.removeAll();
-        dashBoard.repaint();
-        dashBoard.add(userList);
-        userList.setVisible(true); 
+    //displaying the user update and listing form
+    UserList userList = new UserList();
+    dashBoard.removeAll();
+    dashBoard.repaint();
+    dashBoard.add(userList);
+    userList.setVisible(true); 
 }//GEN-LAST:event_menuUpdateUserActionPerformed
 
 private void menuInsertCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInsertCategoryActionPerformed
-// TODO add your handling code here:
-        CategoryRegister userReg = new CategoryRegister();
-        dashBoard.removeAll();
-        dashBoard.repaint();
-        dashBoard.add(userReg);
-        userReg.setVisible(true); 
+    //displaying hte category insertion form
+    CategoryRegister catReg = new CategoryRegister();
+    dashBoard.removeAll();
+    dashBoard.repaint();
+    dashBoard.add(catReg);
+    catReg.setVisible(true); 
 }//GEN-LAST:event_menuInsertCategoryActionPerformed
 
 private void menuUpdateCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuUpdateCategoryActionPerformed
-// TODO add your handling code here:
-        CategoryList catList = new CategoryList();
-        dashBoard.removeAll();
-        dashBoard.repaint();
-        dashBoard.add(catList);
-        catList.setVisible(true);
+    //category update operation
+    CategoryList catList = new CategoryList();
+    dashBoard.removeAll();
+    dashBoard.repaint();
+    dashBoard.add(catList);
+    catList.setVisible(true);
 }//GEN-LAST:event_menuUpdateCategoryActionPerformed
 
 private void menuInsertSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInsertSupplierActionPerformed
-// TODO add your handling code here:
-  
+// Created from the form creator
+
 }//GEN-LAST:event_menuInsertSupplierActionPerformed
 
 private void menuSupplierInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSupplierInsertActionPerformed
-// TODO add your handling code here:
-        SupplierRegister supplierReg = new SupplierRegister();
-        dashBoard.removeAll();
-        dashBoard.repaint();
-        dashBoard.add(supplierReg);
-        supplierReg.setVisible(true);
+// supplier inserion operation
+    SupplierRegister supplierReg = new SupplierRegister();
+    dashBoard.removeAll();
+    dashBoard.repaint();
+    dashBoard.add(supplierReg);
+    supplierReg.setVisible(true);
 }//GEN-LAST:event_menuSupplierInsertActionPerformed
 
 private void menuUpdateSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuUpdateSupplierActionPerformed
@@ -487,15 +462,6 @@ private void menuDamageUpdateActionPerformed(java.awt.event.ActionEvent evt) {//
         damageList.setVisible(true);
 }//GEN-LAST:event_menuDamageUpdateActionPerformed
 
-private void menuDbBackupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuDbBackupActionPerformed
-// TODO add your handling code here:
-        DbBackUp db = new DbBackUp();
-        dashBoard.removeAll();
-        dashBoard.repaint();
-        dashBoard.add(db);
-        db.setVisible(true);
-}//GEN-LAST:event_menuDbBackupActionPerformed
-
     private void menuReportCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReportCategoryActionPerformed
         // TODO add your handling code here:
         ReportCategory rc= new  ReportCategory();
@@ -568,50 +534,49 @@ private void menuDbBackupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DashBoard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DashBoard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DashBoard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DashBoard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                new DashBoard().setVisible(true);
-                //setExtendedState(MAXIMIZED_BOTH);
-                //DashBoard.setUndecorated(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(DashBoardAdm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(DashBoardAdm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(DashBoardAdm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(DashBoardAdm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//
+//            public void run() {
+//                new DashBoardAdm().setVisible(true);
+//                //setExtendedState(MAXIMIZED_BOTH);
+//                //DashBoard.setUndecorated(true);
+//            }
+//        });
+//    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JDesktopPane dashBoard;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenu menuBackup;
     private javax.swing.JMenuItem menuDamageInsert;
     private javax.swing.JMenuItem menuDamageUpdate;
-    private javax.swing.JMenuItem menuDbBackup;
     private javax.swing.JMenu menuHelp;
     private javax.swing.JMenuItem menuInsertCategory;
     private javax.swing.JMenu menuInsertSupplier;
@@ -624,7 +589,6 @@ private void menuDbBackupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private javax.swing.JMenuItem menuReportDamage;
     private javax.swing.JMenuItem menuReportReturn;
     private javax.swing.JMenuItem menuReportSupplier;
-    private javax.swing.JMenuItem menuReportUser;
     private javax.swing.JMenuItem menuReturnInsert;
     private javax.swing.JMenuItem menuReturnUpdate;
     private javax.swing.JMenuItem menuSalesInsert;
