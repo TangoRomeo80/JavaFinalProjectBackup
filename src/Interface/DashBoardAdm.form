@@ -236,14 +236,6 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="menuHelp">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Help ?"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="12" style="1"/>
-            </Property>
-          </Properties>
-        </Menu>
         <Menu class="javax.swing.JMenu" name="menuLogOut">
           <Properties>
             <Property name="text" type="java.lang.String" value="Log Out"/>

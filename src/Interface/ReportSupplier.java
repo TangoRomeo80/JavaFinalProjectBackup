@@ -2,10 +2,8 @@ package Interface;
 
 import Executor.SupplierEx;
 import Object.SupplierObj;
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**

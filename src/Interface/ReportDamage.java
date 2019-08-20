@@ -2,10 +2,8 @@ package Interface;
 
 import Executor.DamageEx;
 import Object.DamageObj;
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**

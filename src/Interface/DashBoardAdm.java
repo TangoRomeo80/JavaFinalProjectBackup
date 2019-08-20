@@ -83,7 +83,6 @@ public class DashBoardAdm extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         menuReportDamage = new javax.swing.JMenuItem();
         menuReportReturn = new javax.swing.JMenuItem();
-        menuHelp = new javax.swing.JMenu();
         menuLogOut = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
@@ -468,10 +467,6 @@ public class DashBoardAdm extends javax.swing.JFrame {
 
         jMenuBar1.add(menuReport);
 
-        menuHelp.setText("Help ?");
-        menuHelp.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jMenuBar1.add(menuHelp);
-
         menuLogOut.setText("Log Out");
         menuLogOut.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         menuLogOut.addActionListener(new java.awt.event.ActionListener() {
@@ -509,8 +504,8 @@ public class DashBoardAdm extends javax.swing.JFrame {
 private void menuInsertUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInsertUserActionPerformed
     //displaying the user register form
     UserRegister userReg = new UserRegister();
-//    //    dashBoard.removeAll();
-//    //    dashBoard.repaint();
+
+
     dashBoard.add(userReg);
     userReg.setVisible(true); 
 }//GEN-LAST:event_menuInsertUserActionPerformed
@@ -523,8 +518,8 @@ private void menuLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 private void menuUpdateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuUpdateUserActionPerformed
     //displaying the user update and listing form
     UserList userList = new UserList();
-    //    dashBoard.removeAll();
-    //    dashBoard.repaint();
+    
+    
     dashBoard.add(userList);
     userList.setVisible(true); 
 }//GEN-LAST:event_menuUpdateUserActionPerformed
@@ -532,8 +527,8 @@ private void menuUpdateUserActionPerformed(java.awt.event.ActionEvent evt) {//GE
 private void menuInsertCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInsertCategoryActionPerformed
     //displaying hte category insertion form
     CategoryRegister catReg = new CategoryRegister();
-    //    dashBoard.removeAll();
-    //    dashBoard.repaint();
+    
+    
     dashBoard.add(catReg);
     catReg.setVisible(true); 
 }//GEN-LAST:event_menuInsertCategoryActionPerformed
@@ -541,8 +536,8 @@ private void menuInsertCategoryActionPerformed(java.awt.event.ActionEvent evt) {
 private void menuUpdateCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuUpdateCategoryActionPerformed
     //category update operation
     CategoryList catList = new CategoryList();
-    //    dashBoard.removeAll();
-    //    dashBoard.repaint();
+    
+    
     dashBoard.add(catList);
     catList.setVisible(true);
 }//GEN-LAST:event_menuUpdateCategoryActionPerformed
@@ -555,268 +550,228 @@ private void menuInsertSupplierActionPerformed(java.awt.event.ActionEvent evt) {
 private void menuSupplierInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSupplierInsertActionPerformed
 // supplier inserion operation
     SupplierRegister supplierReg = new SupplierRegister();
-    //    dashBoard.removeAll();
-    //    dashBoard.repaint();
+    
+    
     dashBoard.add(supplierReg);
     supplierReg.setVisible(true);
 }//GEN-LAST:event_menuSupplierInsertActionPerformed
 
 private void menuUpdateSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuUpdateSupplierActionPerformed
-// TODO add your handling code here:
+
         SupplierList supplierList = new SupplierList();
-        //    dashBoard.removeAll();
-        //    dashBoard.repaint();
+        
+        
         dashBoard.add(supplierList);
         supplierList.setVisible(true);
 }//GEN-LAST:event_menuUpdateSupplierActionPerformed
 
 private void menuSalesInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSalesInsertActionPerformed
-// TODO add your handling code here:
+
         SalesRegister salesReg = new SalesRegister();
-        //    dashBoard.removeAll();
-        //    dashBoard.repaint();
+        
+        
         dashBoard.add(salesReg);
         salesReg.setVisible(true); 
 }//GEN-LAST:event_menuSalesInsertActionPerformed
 
 private void menuReturnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReturnInsertActionPerformed
-// TODO add your handling code here:
+
         ReturnRegister rturnReg = new ReturnRegister();
-        //    dashBoard.removeAll();
-        //    dashBoard.repaint();
+        
+        
         dashBoard.add(rturnReg);
         rturnReg.setVisible(true);
 }//GEN-LAST:event_menuReturnInsertActionPerformed
 
 private void menuReturnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReturnUpdateActionPerformed
-// TODO add your handling code here:
+
         ReturnList rturnList = new ReturnList();
-        //    dashBoard.removeAll();
-        //    dashBoard.repaint();
+        
+        
         dashBoard.add(rturnList);
         rturnList.setVisible(true);
 }//GEN-LAST:event_menuReturnUpdateActionPerformed
 
 private void menuSalesUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSalesUpdateActionPerformed
-// TODO add your handling code here:
+
         SalesList salesList = new  SalesList();
-        //    dashBoard.removeAll();
-        //    dashBoard.repaint();
+        
+        
         dashBoard.add(salesList);
         salesList.setVisible(true);
 }//GEN-LAST:event_menuSalesUpdateActionPerformed
 
 private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-// TODO add your handling code here:
+
         System.exit(0);
 }//GEN-LAST:event_jMenuItem1ActionPerformed
 
 private void menuItemRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRegActionPerformed
-// TODO add your handling code here:
+
         ItemRegister itemReg = new ItemRegister();
-        //    dashBoard.removeAll();
-        //    dashBoard.repaint();
+        
+        
         dashBoard.add(itemReg);
         itemReg.setVisible(true);
 }//GEN-LAST:event_menuItemRegActionPerformed
 
 private void menuItemUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemUpdateActionPerformed
-// TODO add your handling code here:
+
         ItemList itemList = new ItemList();
-        //    dashBoard.removeAll();
-        //    dashBoard.repaint();
+        
+        
         dashBoard.add(itemList);
         itemList.setVisible(true);
 }//GEN-LAST:event_menuItemUpdateActionPerformed
 
 private void menuDamageInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuDamageInsertActionPerformed
-// TODO add your handling code here:
+
         DamageRegister damageReg = new DamageRegister();
-        //    dashBoard.removeAll();
-        //    dashBoard.repaint();
+        
+        
         dashBoard.add(damageReg);
         damageReg.setVisible(true);
 }//GEN-LAST:event_menuDamageInsertActionPerformed
 
 private void menuDamageUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuDamageUpdateActionPerformed
-// TODO add your handling code here:
+
         DamageList damageList = new DamageList();
-        //    dashBoard.removeAll();
-        //    dashBoard.repaint();
+        
+        
         dashBoard.add(damageList);
         damageList.setVisible(true);
 }//GEN-LAST:event_menuDamageUpdateActionPerformed
 
     private void menuReportCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReportCategoryActionPerformed
-        // TODO add your handling code here:
+        
         ReportCategory rc= new  ReportCategory();
      
-        //    dashBoard.removeAll();
-        //    dashBoard.repaint();
+        
+        
         dashBoard.add(rc);
         rc.setVisible(true);
     }//GEN-LAST:event_menuReportCategoryActionPerformed
 
     private void menuReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReportActionPerformed
-        // TODO add your handling code here:
+        
         
     }//GEN-LAST:event_menuReportActionPerformed
 
     private void menuReportSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReportSupplierActionPerformed
-        // TODO add your handling code here:
+        
         ReportSupplier rs = new ReportSupplier();
-        //    dashBoard.removeAll();
-        //    dashBoard.repaint();
+        
+        
         dashBoard.add(rs);
         rs.setVisible(true);
     }//GEN-LAST:event_menuReportSupplierActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
+        
         ReportSales rsa = new ReportSales();
-        //    dashBoard.removeAll();
-        //    dashBoard.repaint();
+        
+        
         dashBoard.add(rsa);
         rsa.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void menuReportDamageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReportDamageActionPerformed
-        // TODO add your handling code here:
+        
         ReportDamage rd = new ReportDamage();
-        //    dashBoard.removeAll();
-        //    dashBoard.repaint();
+        
+        
         dashBoard.add(rd);
         rd.setVisible(true);
     }//GEN-LAST:event_menuReportDamageActionPerformed
 
     private void menuReportReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReportReturnActionPerformed
-        // TODO add your handling code here:
+        
         ReportReturn rr = new  ReportReturn();
-        //    dashBoard.removeAll();
-        //    dashBoard.repaint();
+        
+        
         dashBoard.add(rr);
         rr.setVisible(true);
     }//GEN-LAST:event_menuReportReturnActionPerformed
 
     private void menuViewItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuViewItemActionPerformed
-        // TODO add your handling code here:
+        
         ReportItem ri = new ReportItem();
-        //    dashBoard.removeAll();
-        //    dashBoard.repaint();
+        
+        
         dashBoard.add(ri);
         ri.setVisible(true);
     }//GEN-LAST:event_menuViewItemActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
+        
         ChangePasswordForm cp= new ChangePasswordForm(user);       
-        //    dashBoard.removeAll();
-        //    dashBoard.repaint();
+        
+        
         dashBoard.add(cp);
         cp.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jButtonItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonItemActionPerformed
-        // TODO add your handling code here:
+        
         ItemList itemList = new ItemList();
-        //    dashBoard.removeAll();
-        //    dashBoard.repaint();
+        
+        
         dashBoard.add(itemList);
         itemList.setVisible(true);
     }//GEN-LAST:event_jButtonItemActionPerformed
 
     private void jButtonSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalesActionPerformed
-        // TODO add your handling code here:
+        
         SalesList salesList = new  SalesList();
-        //    dashBoard.removeAll();
-        //    dashBoard.repaint();
+        
+        
         dashBoard.add(salesList);
         salesList.setVisible(true);
     }//GEN-LAST:event_jButtonSalesActionPerformed
 
     private void jButtonReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReturnActionPerformed
-        // TODO add your handling code here:
+        
         ReturnList rturnList = new ReturnList();
-        //    dashBoard.removeAll();
-        //    dashBoard.repaint();
+        
+        
         dashBoard.add(rturnList);
         rturnList.setVisible(true);
     }//GEN-LAST:event_jButtonReturnActionPerformed
 
     private void jButtonDamageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDamageActionPerformed
-        // TODO add your handling code here:
+        
         DamageList damageList = new DamageList();
-        //    dashBoard.removeAll();
-        //    dashBoard.repaint();
+        
+        
         dashBoard.add(damageList);
         damageList.setVisible(true);
     }//GEN-LAST:event_jButtonDamageActionPerformed
 
     private void jButtonSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSupplierActionPerformed
-        // TODO add your handling code here:
-         SupplierList supplierList = new SupplierList();
-        //    dashBoard.removeAll();
-        //    dashBoard.repaint();
+        
+        SupplierList supplierList = new SupplierList();
+        
+        
         dashBoard.add(supplierList);
         supplierList.setVisible(true);
     }//GEN-LAST:event_jButtonSupplierActionPerformed
 
     private void jButtonCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCategoryActionPerformed
-        // TODO add your handling code here:
+
         CategoryList catList = new CategoryList();
-    //    dashBoard.removeAll();
-    //    dashBoard.repaint();
-    dashBoard.add(catList);
-    catList.setVisible(true);
+    
+    
+        dashBoard.add(catList);
+        catList.setVisible(true);
     }//GEN-LAST:event_jButtonCategoryActionPerformed
 
     private void jButtonUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUserActionPerformed
-        // TODO add your handling code here:
         UserList userList = new UserList();
-    //    dashBoard.removeAll();
-    //    dashBoard.repaint();
-    dashBoard.add(userList);
-    userList.setVisible(true); 
+        dashBoard.add(userList);
+        userList.setVisible(true); 
     }//GEN-LAST:event_jButtonUserActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(DashBoardAdm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(DashBoardAdm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(DashBoardAdm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(DashBoardAdm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//
-//            public void run() {
-//                new DashBoardAdm().setVisible(true);
-//                //setExtendedState(MAXIMIZED_BOTH);
-//                //DashBoard.setUndecorated(true);
-//            }
-//        });
-//    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JDesktopPane dashBoard;
     private javax.swing.JButton jButtonCategory;
@@ -842,7 +797,6 @@ private void menuDamageUpdateActionPerformed(java.awt.event.ActionEvent evt) {//
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem menuDamageInsert;
     private javax.swing.JMenuItem menuDamageUpdate;
-    private javax.swing.JMenu menuHelp;
     private javax.swing.JMenuItem menuInsertCategory;
     private javax.swing.JMenu menuInsertSupplier;
     private javax.swing.JMenuItem menuInsertUser;

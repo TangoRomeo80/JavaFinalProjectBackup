@@ -166,7 +166,7 @@ private void btnUserLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         dboard.setUser(user);
         dboard.setVisible(true);
       }else{
-        JOptionPane.showMessageDialog(null, "Invalid Username or Password","Login Failed", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Invalid Username, Password or User Type","Login Failed", JOptionPane.ERROR_MESSAGE);
       }
     }catch(Exception ex){
       JOptionPane.showMessageDialog(null, ex.getMessage(), "Exception Occured", JOptionPane.ERROR_MESSAGE);

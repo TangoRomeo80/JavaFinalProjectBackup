@@ -2,11 +2,8 @@ package Interface;
 
 import Executor.CategoryEx;
 import Object.CategoryObj;
-import java.awt.print.PrinterException;
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
